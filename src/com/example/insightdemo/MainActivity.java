@@ -190,13 +190,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 
     }
 	
-	/**
-<<<<<<< HEAD
-	 * Conflict test
-=======
-	 * Welcome Page
->>>>>>> construction-for-Roy
-	 */
+	//welcome page
 	public static class WelcomeFragment extends Fragment {
 
 		private ListView listView;

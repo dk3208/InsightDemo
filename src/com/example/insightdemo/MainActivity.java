@@ -191,7 +191,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
     }
 	
 	/**
-	 * A placeholder fragment containing a simple view.
+	 * Conflict test
 	 */
 	public static class WelcomeFragment extends Fragment {
 

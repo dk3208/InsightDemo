@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Insight</string>
+    <string name="action_settings">Settings</string>
+    
+       <!-- login popup window string -->
+    <string name="ms_st">Membership_Number</string> 
+    <string name="pw_st">Password</string>
+    <string name="sign_in">Sign in</string>
+    <string name="prompt1">Forget my Password/Membership Number</string>
+    <string name="prompt2">Not yet a family member</string>
+    <string name="prompt3">Join Now !</string>
+    <string name="closepop">close</string><string-array name="welcome_array">
+        <item>BOOK A ROOM</item>
+        <item>HOTEL TOUR</item>
+        <item>MY ROOM</item>
+        <item>MY BOOKING</item>
+        <item>CONCIERGE</item>
+        <item>MESSAGE</item>
+        <item>LIVE CHAT</item>
+    </string-array>
+    
+    <!-- my room page string -->
+    <string name="myroom">MY ROOM</string>
+    <string name="myroom_des">Please insert your room number &amp; membership password to unlock the door</string>
+    <string name="myroom_num">ROOM NUMBER</string>
+    <string name="myroom_mspw">MEMBERSHIP PASSWORD</string>
+    <string name="btn_ok">OK</string>
+    <string name="btn_lock">LOCK</string>
+    <string name="btn_open">OPEN</string>
+    <string name="link_help">Help Me</string>
+    <string name="link_unlock">&gt;&gt;&gt; side to unlock</string>
+</resources>

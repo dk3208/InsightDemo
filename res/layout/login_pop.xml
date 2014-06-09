@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#6699ff" >
+
+    <EditText
+        android:id="@+id/et_popMS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:hint="@string/ms_st"
+        android:inputType="number" >
+    
+            <requestFocus />
+    </EditText>
+    
+    <EditText
+        android:id="@+id/et_popPW"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="52dp"
+        android:ems="10"
+        android:hint="@string/pw_st"
+        android:inputType="textPassword" />
+
+
+
+    <TextView
+        android:id="@+id/tv_popPmt1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_popPW"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="42dp"
+        android:gravity="center"
+        android:text="@string/prompt1"
+        android:textColor="#ffffffff"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/tv_popPmt2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_popPmt1"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="@string/prompt2"
+        android:textColor="#ffffffff"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/btn_popJoinUs"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_popPmt2"
+        android:layout_centerHorizontal="true"
+        android:text="@string/prompt3" />
+
+    <Button
+        android:id="@+id/btn_popSignin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_popPW"
+        android:layout_centerHorizontal="true"
+        android:text="@string/sign_in" />
+
+    <Button
+        android:id="@+id/btn_popClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btn_popJoinUs"
+        android:layout_alignBottom="@+id/btn_popJoinUs"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="22dp"
+        android:text="@string/closepop"
+        android:textSize="12sp" />
+
+</RelativeLayout>

@@ -131,7 +131,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 
 		return super.onOptionsItemSelected(item);
 	}
-
+//d
 	public void showLoginDialog()
 	{
 		final Dialog dialog = new Dialog(this);

@@ -40,6 +40,7 @@ import android.widget.Toast;
 import android.widget.ViewAnimator;
 import android.os.Build;
 
+//
 public class MainActivity extends Activity implements OnItemClickListener {
 
 	private ActionBar actionBar;

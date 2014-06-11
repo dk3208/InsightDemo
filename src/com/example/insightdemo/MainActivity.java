@@ -1,5 +1,4 @@
 package com.example.insightdemo;
-idsfhlshflishlifh
 import java.util.ArrayList;
 
 import android.R.string;

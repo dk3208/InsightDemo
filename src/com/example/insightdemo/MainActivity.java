@@ -8,6 +8,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -42,14 +43,9 @@ import android.os.Build;
 //roy give me money
 public class MainActivity extends Activity implements OnItemClickListener {
 
-	private ActionBar actionBar;
-	private ViewAnimator viewAnimator;
-	private Animation slide_in_left, slide_out_right;
 	private Context context = this;
 	private boolean login = false;
-	private static boolean currentMain = true;
-
-
+	private WelcomeFragment frg = new WelcomeFragment(); 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 
@@ -60,6 +56,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE,
 				R.layout.titlebar);
 
+		
 		
 		ImageView img1 = (ImageView) findViewById(R.id.imageView1);
 		img1.setBackgroundColor(Color.rgb(170, 170, 15));
@@ -84,27 +81,24 @@ public class MainActivity extends Activity implements OnItemClickListener {
 			}
 		});
 
-		/*
-		 * slide_in_left = AnimationUtils.loadAnimation(this,
-		 * android.R.anim.slide_in_left); slide_out_right =
-		 * AnimationUtils.loadAnimation(this, android.R.anim.slide_out_right);
-		 * 
-		 * viewAnimator.setInAnimation(slide_in_left);
-		 * viewAnimator.setOutAnimation(slide_out_right);
-		 */
-
 		Button btn = (Button) findViewById(R.id.button1);
 
 		btn.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if (currentMain) {
-					WelcomeFragment frg = new WelcomeFragment();  
-		            getFragmentManager().beginTransaction().replace(R.id.container, frg).commit();
+				
+				FragmentTransaction ft = getFragmentManager().beginTransaction();
+				ft.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right);
+				
+				if (!frg.isVisible()) {
+					  
+		            ft.add(R.id.container, frg, "detailFragment");
+		            ft.commit();
+		            
 				} else {
-					setContentView(R.layout.activity_main);
+					ft.remove(frg);
+		            ft.commit();
 				}
-				currentMain = !currentMain;
 			}
 		});
 

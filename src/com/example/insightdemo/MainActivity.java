@@ -1,14 +1,8 @@
 package com.example.insightdemo;
-import java.util.ArrayList;
-
-import android.R.string;
 import android.app.Activity;
-import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.DialogFragment;
 import android.app.Fragment;
-import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -25,24 +19,18 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.ViewParent;
 import android.view.Window;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ExpandableListView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ViewAnimator;
-import android.os.Build;
-import android.app.AlertDialog;
 
 //roy give me money
 public class MainActivity extends Activity implements OnItemClickListener {
@@ -51,6 +39,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 	private boolean login = false;
 	private WelcomeFragment welcomeFrg = new WelcomeFragment(); 
 	private MyroomFragment myroomFrg = new MyroomFragment();
+	private MessageFragment messageFrg = new MessageFragment();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 
@@ -220,22 +209,6 @@ public class MainActivity extends Activity implements OnItemClickListener {
 		}
 		
 		ft.commit();
-		
-/*
-        Button button02= (Button)findViewById(R.id.Button02);
-
-        button02.setOnClickListener(new Button.OnClickListener(){
-
-            publicvoid onClick(View v) {
-
-                // TODO Auto-generated method stub
-
-                jumpToLayout01();
-
-            }           
-
-        });*/
-
     }
 	
 	//myroom page
@@ -368,7 +341,9 @@ public class MainActivity extends Activity implements OnItemClickListener {
 					case 2:
 						 ((MainActivity)getActivity()).jumpMyRoomPage();
 						break;
-					
+					case 5:
+						 ((MainActivity)getActivity()).jumpMessagePage();
+						break;
 					}
 			    }
 			});
@@ -377,6 +352,46 @@ public class MainActivity extends Activity implements OnItemClickListener {
 		}
 		
 	}
+
+	//myroom page
+	public static class MessageFragment extends Fragment {
+
+		public MessageFragment() {
+		}
+		
+		@Override  
+	    public void onCreate(Bundle savedInstanceState) {  
+	        super.onCreate(savedInstanceState);  
+	             
+	    }  
+		@Override
+		public View onCreateView(LayoutInflater inflater, ViewGroup container,
+				Bundle savedInstanceState) {
+			View rootView = inflater.inflate(R.layout.message, container, false);
+			
+			rootView.setBackgroundColor(Color.BLACK);
+
+			return rootView;
+		}
+		
+	}
+	
+	public void jumpMessagePage(){
+		
+		FragmentTransaction ft = getFragmentManager().beginTransaction();
+		ft.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right);
+		
+		if (messageFrg.isVisible()) {
+			ft.remove(messageFrg);
+		}
+		
+		if (!messageFrg.isVisible()) {
+			  
+            ft.replace(R.id.container, messageFrg,  "messageFragment");
+		}
+		
+		ft.commit();
+    }
 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,
@@ -408,3 +423,6 @@ public class MainActivity extends Activity implements OnItemClickListener {
 	}
 
 }
+
+
+

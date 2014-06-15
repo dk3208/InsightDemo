@@ -235,11 +235,49 @@ public class MainActivity extends Activity implements OnItemClickListener {
 					false);
 			
 			rootView.setBackgroundColor(Color.BLACK);
+			Button unlock = (Button)rootView.findViewById(R.id.btn2);
+			unlock.setOnClickListener(new OnClickListener() {
+
+				  public void onClick(View arg0) {
+					  
+					  FragmentTransaction ft = getFragmentManager().beginTransaction();
+					  UnlockFragment unlockFrg = new UnlockFragment();
+					    ft.replace(R.id.container, unlockFrg,  "unlockFragment");
+					
+					
+					ft.commit();
+				  }
+				});
 			
 			return rootView;
 		}
 		
 	}
+
+	//unlock page
+		public static class UnlockFragment extends Fragment {
+
+			public UnlockFragment() {
+			}
+			
+			@Override  
+		    public void onCreate(Bundle savedInstanceState) {  
+		        super.onCreate(savedInstanceState);  
+		        
+		        
+		    }  
+			@Override
+			public View onCreateView(LayoutInflater inflater, ViewGroup container,
+					Bundle savedInstanceState) {
+				View rootView = inflater.inflate(R.layout.myroom_page_2, container,
+						false);
+				
+				rootView.setBackgroundColor(Color.BLACK);
+				
+				return rootView;
+			}
+			
+		}
 
 		
 	//welcome page

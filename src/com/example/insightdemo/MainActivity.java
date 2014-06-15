@@ -42,6 +42,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewAnimator;
 import android.os.Build;
+import android.app.AlertDialog;
 
 //roy give me money
 public class MainActivity extends Activity implements OnItemClickListener {
@@ -84,23 +85,22 @@ public class MainActivity extends Activity implements OnItemClickListener {
 			}
 		});
 
-		Button btn = (Button) findViewById(R.id.button1);
+		final Button btn = (Button) findViewById(R.id.button1);
 
 		btn.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				
-				
+
 				FragmentTransaction ft = getFragmentManager().beginTransaction();
 				ft.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right);
 				
 				if (!welcomeFrg.isVisible()) {
 					 
 		            ft.replace(R.id.container, welcomeFrg, "detailFragment");
-		            
+		            btn.setBackgroundResource(R.drawable.droidmore);
 				} else {
-					ft.remove(welcomeFrg);
-		            
+					ft.remove(welcomeFrg);				
+					btn.setBackgroundResource(R.drawable.droidmenu);
 				}
 				ft.commit();
 			}
@@ -170,12 +170,37 @@ public class MainActivity extends Activity implements OnItemClickListener {
 			public void onClick(View v) {
 				// custom dialog
 				final Dialog JoinDlg = new Dialog(context);
-				JoinDlg.setContentView(R.layout.join_pop);
+				JoinDlg.setContentView(R.layout.register1);
 				JoinDlg.setTitle("Join Page...");
 				
 				JoinDlg.show();
+				
+				Button regCloseButton = (Button) JoinDlg.findViewById(R.id.btn_regclose);
+				regCloseButton.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						JoinDlg.dismiss();
+					}
+				});
+				
+				Button regreJoinButton = (Button) JoinDlg.findViewById(R.id.btn_regjoin);
+				regreJoinButton.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						final Dialog MessDlg = new Dialog(context);
+						MessDlg.requestWindowFeature(Window.FEATURE_NO_TITLE);
+						MessDlg.setContentView(R.layout.successed);
+						
+						MessDlg.show();
+						
+						JoinDlg.dismiss();
+						dialog.dismiss();
+					}
+				});
 			}
 		});
+		
+
 		dialog.show();
 	
 	}
@@ -252,23 +277,23 @@ public class MainActivity extends Activity implements OnItemClickListener {
 	}
 
 	//unlock page
-		public static class UnlockFragment extends Fragment {
+	public static class UnlockFragment extends Fragment {
 
-			public UnlockFragment() {
-			}
-			
-			@Override  
-		    public void onCreate(Bundle savedInstanceState) {  
-		        super.onCreate(savedInstanceState);  
-		        
-		        
-		    }  
-			@Override
-			public View onCreateView(LayoutInflater inflater, ViewGroup container,
-					Bundle savedInstanceState) {
-				View rootView = inflater.inflate(R.layout.myroom_page_2, container,
-						false);
-				
+		public UnlockFragment() {
+		}
+		
+		@Override  
+	    public void onCreate(Bundle savedInstanceState) {  
+	        super.onCreate(savedInstanceState);  
+	        
+	        
+	    }  
+		@Override
+		public View onCreateView(LayoutInflater inflater, ViewGroup container,
+				Bundle savedInstanceState) {
+			View rootView = inflater.inflate(R.layout.myroom_page_2, container,
+					false);
+		        		 				
 				rootView.setBackgroundColor(Color.BLACK);
 				VerticalSeekBar verticalSeebar = (VerticalSeekBar)rootView.findViewById(R.id.verticalSeekbar);
 				
@@ -283,19 +308,15 @@ public class MainActivity extends Activity implements OnItemClickListener {
 		        	}
 
 		        	public void onProgressChanged(SeekBar seekBar, int progress,boolean fromUser) {
-		        		if(progress < 10)
-		        		{
-		        			seekBar.setProgress(100);
-		        		}
+		        		
 		        	}
 		        });   
 
 				return rootView;
 			}
-			
 		}
-
 		
+	
 	//welcome page
 	public static class WelcomeFragment extends Fragment {
 
@@ -324,15 +345,13 @@ public class MainActivity extends Activity implements OnItemClickListener {
 			listView.setAdapter(adapter);
 			
 			signinBtn = (Button) rootView.findViewById(R.id.welcomeBtn);
-			signinBtn.setOnClickListener(new OnClickListener() {
-
-				  public void onClick(View arg0) {
-					
-					  //Log.d("info", "aaa");
+			signinBtn.setOnClickListener(new OnClickListener()
+			{
+				  public void onClick(View arg0)
+				  {
 					  ((MainActivity)getActivity()).showLoginDialog();
-					
 				  }
-				});
+			});
 			
 			listView.setOnItemClickListener(new OnItemClickListener() {
 			    @Override
@@ -340,7 +359,6 @@ public class MainActivity extends Activity implements OnItemClickListener {
 					switch ((int)id)
 					{
 					case 2:
-						//Log.d("info", "aaa");
 						 ((MainActivity)getActivity()).jumpMyRoomPage();
 						break;
 					
@@ -363,15 +381,15 @@ public class MainActivity extends Activity implements OnItemClickListener {
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 	    if(keyCode == KeyEvent.KEYCODE_BACK) {
-	        new AlertDialog.Builder(MainActivity.this).setTitle("@string/MP_prompt")
+	        new AlertDialog.Builder(MainActivity.this).setTitle(R.string.MP_prompt)
 	                .setIconAttribute(android.R.attr.alertDialogIcon)
-	                .setMessage("@string/MP_confirm")
-	                .setPositiveButton("@string/MP_OK", new DialogInterface.OnClickListener() {
+	                .setMessage(R.string.MP_confirm)
+	                .setPositiveButton(R.string.MP_OK, new DialogInterface.OnClickListener() {
 	                    @Override
 	                    public void onClick(DialogInterface dialog, int which) {
 	                    	MainActivity.this.finish();
 	                    }})
-	                .setNegativeButton("@string/MP_cancel", null)
+	                .setNegativeButton(R.string.MP_cancel, null)
 	                .create().show();
 	        return false;
 	    } else if(keyCode == KeyEvent.KEYCODE_MENU) {

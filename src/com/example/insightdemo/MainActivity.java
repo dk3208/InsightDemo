@@ -309,7 +309,6 @@ public class MainActivity extends Activity implements OnItemClickListener {
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 	    if(keyCode == KeyEvent.KEYCODE_BACK) {
-	        // 返回建
 	        new AlertDialog.Builder(MainActivity.this).setTitle("@string/MP_prompt")
 	                .setIconAttribute(android.R.attr.alertDialogIcon)
 	                .setMessage("@string/MP_confirm")

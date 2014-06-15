@@ -291,7 +291,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.myroom_page_2, container,
+			final View rootView = inflater.inflate(R.layout.myroom_page_2, container,
 					false);
 		        		 				
 				rootView.setBackgroundColor(Color.BLACK);
@@ -309,6 +309,13 @@ public class MainActivity extends Activity implements OnItemClickListener {
 
 		        	public void onProgressChanged(SeekBar seekBar, int progress,boolean fromUser) {
 		        		
+		        		if (progress > 80)
+		        		{
+		        			TextView tvn = (TextView) rootView.findViewById(R.id.tv_open);
+		        			tvn.setBackgroundColor(Color.BLUE);
+		        			tvn = (TextView) rootView.findViewById(R.id.tv_lock);
+		        			tvn.setBackgroundColor(Color.WHITE);
+		        		}
 		        	}
 		        });   
 

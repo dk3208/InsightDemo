@@ -87,7 +87,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 			}
 		});
 
-		Button btn = (Button) findViewById(R.id.btn_regjoin);
+		Button btn = (Button) findViewById(R.id.button1);
 
 		btn.setOnClickListener(new OnClickListener() {
 			@Override

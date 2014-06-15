@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- MainActivity page -->
-    <string name="MP_prompt">提示</string>
-    <string name="MP_confirm">確定要退出嗎?</string>
-    <string name="MP_OK">確定</string>
-    <string name="MP_cancel">取消</string>
-    
     <string name="app_name">Insight</string>
     <string name="action_settings">Settings</string>
     
@@ -38,16 +32,11 @@
     <string name="link_help">Help Me</string>
     <string name="link_unlock">&gt;&gt;&gt; side to unlock</string>
     
-    <!-- register1 page string -->
-    <string name="reg_title">Title</string>
-
-    
-    <!-- register2 page string -->
-    <string name="reg_message0">Congratulation</string>
-    <string name="Confirm">Confirm</string>
-    <string name="reg_message1">You are now an official family member of Home Hotel!</string>
-    <string name="reg_message2">Membership Number</string>
-    <string name="reg_hint1">Please enter a password</string>
-    <string name="reg_hint2">Please confirm your new password</string>
-    
+    <string name="title">Login form</string>
+    <string name="registration">Registration form</string>
+    <string name="Exit">Exit</string>
+    <string name="Clear">Clear</string>
+    <string name="Register">Register</string>
+    <string name="Login">Login</string>
+    <string name="Back">Back</string>
 </resources>

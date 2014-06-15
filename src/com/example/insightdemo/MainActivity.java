@@ -8,6 +8,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -35,6 +36,7 @@ import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewAnimator;
@@ -45,7 +47,8 @@ public class MainActivity extends Activity implements OnItemClickListener {
 
 	private Context context = this;
 	private boolean login = false;
-	private WelcomeFragment frg = new WelcomeFragment(); 
+	private WelcomeFragment welcomeFrg = new WelcomeFragment(); 
+	private MyroomFragment myroomFrg = new MyroomFragment();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 
@@ -56,6 +59,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE,
 				R.layout.titlebar);
 
+		
 		
 		
 		ImageView img1 = (ImageView) findViewById(R.id.imageView1);
@@ -69,7 +73,9 @@ public class MainActivity extends Activity implements OnItemClickListener {
 
 		ImageView img4 = (ImageView) findViewById(R.id.imageView4);
 		img4.setBackgroundColor(Color.rgb(170, 170, 15));
-
+		
+		
+		
 		TextView view = (TextView) findViewById(R.id.textHomeLink);
 
 		view.setOnClickListener(new OnClickListener() {
@@ -87,22 +93,22 @@ public class MainActivity extends Activity implements OnItemClickListener {
 			@Override
 			public void onClick(View v) {
 				
+				
 				FragmentTransaction ft = getFragmentManager().beginTransaction();
 				ft.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right);
 				
-				if (!frg.isVisible()) {
-					  
-		            ft.add(R.id.container, frg, "detailFragment");
-		            ft.commit();
+				if (!welcomeFrg.isVisible()) {
+					 
+		            ft.replace(R.id.container, welcomeFrg, "detailFragment");
 		            
 				} else {
-					ft.remove(frg);
-		            ft.commit();
+					ft.remove(welcomeFrg);
+		            
 				}
+				ft.commit();
 			}
 		});
-
-
+		
 		
 		// disable parts of items for non-login user
 		if (!login) {
@@ -125,7 +131,20 @@ public class MainActivity extends Activity implements OnItemClickListener {
 
 		return super.onOptionsItemSelected(item);
 	}
-//d
+	
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		Log.d("aaa", "in")	;
+		if(data != null)	
+			switch(requestCode){	    		
+    		case 0:
+    			String result_status = data.getExtras().get(Intent.EXTRA_TEXT).toString();    			    			    			    			
+    			Log.d("aaa", result_status)	;
+    			break;
+    			    		
+			}		
+	}	
+	
 	public void showLoginDialog()
 	{
 		final Dialog dialog = new Dialog(this);
@@ -165,8 +184,21 @@ public class MainActivity extends Activity implements OnItemClickListener {
 	}
 
 	public void jumpMyRoomPage(){
-
-        setContentView(R.layout.myroom_page);
+		
+		FragmentTransaction ft = getFragmentManager().beginTransaction();
+		ft.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right);
+		
+		if (welcomeFrg.isVisible()) {
+			ft.remove(welcomeFrg);
+		}
+		
+		if (!myroomFrg.isVisible()) {
+			  
+            ft.replace(R.id.container, myroomFrg,  "myroomFragment");
+		}
+		
+		ft.commit();
+		
 /*
         Button button02= (Button)findViewById(R.id.Button02);
 
@@ -184,6 +216,32 @@ public class MainActivity extends Activity implements OnItemClickListener {
 
     }
 	
+	//myroom page
+	public static class MyroomFragment extends Fragment {
+
+		public MyroomFragment() {
+		}
+		
+		@Override  
+	    public void onCreate(Bundle savedInstanceState) {  
+	        super.onCreate(savedInstanceState);  
+	        
+	        
+	    }  
+		@Override
+		public View onCreateView(LayoutInflater inflater, ViewGroup container,
+				Bundle savedInstanceState) {
+			View rootView = inflater.inflate(R.layout.myroom_page, container,
+					false);
+			
+			rootView.setBackgroundColor(Color.BLACK);
+			
+			return rootView;
+		}
+		
+	}
+
+		
 	//welcome page
 	public static class WelcomeFragment extends Fragment {
 

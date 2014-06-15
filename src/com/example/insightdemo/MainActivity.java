@@ -37,6 +37,7 @@ import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SeekBar;
+import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewAnimator;
@@ -59,9 +60,6 @@ public class MainActivity extends Activity implements OnItemClickListener {
 		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE,
 				R.layout.titlebar);
 
-		
-		
-		
 		ImageView img1 = (ImageView) findViewById(R.id.imageView1);
 		img1.setBackgroundColor(Color.rgb(170, 170, 15));
 
@@ -73,7 +71,6 @@ public class MainActivity extends Activity implements OnItemClickListener {
 
 		ImageView img4 = (ImageView) findViewById(R.id.imageView4);
 		img4.setBackgroundColor(Color.rgb(170, 170, 15));
-		
 		
 		
 		TextView view = (TextView) findViewById(R.id.textHomeLink);
@@ -273,7 +270,26 @@ public class MainActivity extends Activity implements OnItemClickListener {
 						false);
 				
 				rootView.setBackgroundColor(Color.BLACK);
+				VerticalSeekBar verticalSeebar = (VerticalSeekBar)rootView.findViewById(R.id.verticalSeekbar);
 				
+
+		        verticalSeebar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
+		        	public void onStopTrackingTouch(SeekBar seekBar) {
+		        		
+		        	}
+		        	
+		        	public void onStartTrackingTouch(SeekBar seekBar) {
+		        		
+		        	}
+
+		        	public void onProgressChanged(SeekBar seekBar, int progress,boolean fromUser) {
+		        		if(progress < 10)
+		        		{
+		        			seekBar.setProgress(100);
+		        		}
+		        	}
+		        });   
+
 				return rootView;
 			}
 			

@@ -83,14 +83,6 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/button1"
-        android:layout_alignTop="@+id/tv_lock"
-        android:text="@string/link_unlock" />
-
-    <TextView
         android:id="@+id/tv_lock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -113,5 +105,18 @@
         android:gravity="center_horizontal"
         android:text="@string/btn_open"
         android:textSize="36sp" />
+    
+     <com.example.insightdemo.VerticalSeekBar
+
+        android:id="@+id/verticalSeekbar"
+        android:max="100"
+        android:layout_width="60sp" 
+        android:thumb="@drawable/seekbar_thumb"
+        android:layout_height="100sp"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/tv_lock"
+        android:layout_below="@+id/textView5"
+        android:layout_marginTop="20dp"
+        android:progress="100" />
 
 </RelativeLayout>

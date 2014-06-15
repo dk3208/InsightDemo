@@ -231,7 +231,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.myroom_page, container,
+			View rootView = inflater.inflate(R.layout.myroom_page_1, container,
 					false);
 			
 			rootView.setBackgroundColor(Color.BLACK);

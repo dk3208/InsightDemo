@@ -81,7 +81,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 			}
 		});
 
-		Button btn = (Button) findViewById(R.id.button1);
+		Button btn = (Button) findViewById(R.id.btn_regjoin);
 
 		btn.setOnClickListener(new OnClickListener() {
 			@Override
@@ -252,15 +252,15 @@ public class MainActivity extends Activity implements OnItemClickListener {
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 	    if(keyCode == KeyEvent.KEYCODE_BACK) {
 	        // 返回建
-	        new AlertDialog.Builder(MainActivity.this).setTitle("提示")
+	        new AlertDialog.Builder(MainActivity.this).setTitle("@string/MP_prompt")
 	                .setIconAttribute(android.R.attr.alertDialogIcon)
-	                .setMessage("確定要退出吗?")
-	                .setPositiveButton("確定", new DialogInterface.OnClickListener() {
+	                .setMessage("@string/MP_confirm")
+	                .setPositiveButton("@string/MP_OK", new DialogInterface.OnClickListener() {
 	                    @Override
 	                    public void onClick(DialogInterface dialog, int which) {
 	                    	MainActivity.this.finish();
 	                    }})
-	                .setNegativeButton("取消", null)
+	                .setNegativeButton("@string/MP_cancel", null)
 	                .create().show();
 	        return false;
 	    } else if(keyCode == KeyEvent.KEYCODE_MENU) {

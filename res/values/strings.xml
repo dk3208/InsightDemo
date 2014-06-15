@@ -31,4 +31,12 @@
     <string name="btn_open">OPEN</string>
     <string name="link_help">Help Me</string>
     <string name="link_unlock">&gt;&gt;&gt; side to unlock</string>
+    
+    <string name="title">Login form</string>
+    <string name="registration">Registration form</string>
+    <string name="Exit">Exit</string>
+    <string name="Clear">Clear</string>
+    <string name="Register">Register</string>
+    <string name="Login">Login</string>
+    <string name="Back">Back</string>
 </resources>

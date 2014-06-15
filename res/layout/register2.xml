@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="fill_parent" 
+    android:layout_width="fill_parent" 
+    android:layout_gravity="fill_horizontal" 
+    android:orientation="vertical">
+
+	<TextView
+	    android:id="@+id/Label"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:gravity="center"
+	    android:text="@string/reg_message0"
+	    android:textSize="24sp" />
+
+	<TextView
+	    android:id="@+id/reg_mes1"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:gravity="center"
+	    android:text="@string/reg_message1"
+	    android:textAppearance="?android:attr/textAppearanceMedium"
+	    android:textSize="12sp" />
+
+	<TextView
+	    android:id="@+id/reg_mes2"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:gravity="center"
+	    android:text="@string/reg_message2"
+	    android:textAppearance="?android:attr/textAppearanceMedium"
+	    android:textSize="12sp" />
+
+	<TextView
+	    android:id="@+id/reg_memnum_show"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:text="123456"
+	    android:gravity="center"
+	    android:textAppearance="?android:attr/textAppearanceMedium"
+	    android:textSize="12sp" />
+	<LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+		<EditText
+		    android:id="@+id/nPassword"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:layout_gravity="fill_horizontal"
+		    android:gravity="left"
+		    android:hint="@string/reg_hint1"
+		    android:inputType="textPassword"
+		    android:lines="1"
+		    android:selectAllOnFocus="true"
+		    android:textSize="12sp" >
+
+		</EditText>
+	</LinearLayout>
+	<LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+		<EditText
+		    android:id="@+id/nConfiPass"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:layout_gravity="fill_horizontal"
+		    android:gravity="left"
+		    android:hint="@string/reg_hint2"
+		    android:inputType="textPassword"
+		    android:lines="1"
+		    android:selectAllOnFocus="true"
+		    android:textSize="12sp" >
+
+		</EditText>
+	</LinearLayout>
+	<LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal" 
+        android:orientation="horizontal" 
+        android:layout_width="fill_parent">
+		<Button
+			android:layout_height="wrap_content"
+			android:gravity="center_vertical|center_horizontal"
+			android:text="@string/Confirm"
+			android:id="@+id/nConfirm"
+			android:clickable="true"
+            android:layout_width="fill_parent"
+            android:layout_weight="1"></Button>
+	</LinearLayout>
+</LinearLayout>

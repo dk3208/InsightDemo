@@ -88,12 +88,11 @@ public class MainActivity extends Activity implements OnItemClickListener {
 			}
 		});
 
-		Button btn = (Button) findViewById(R.id.button1);
+		final Button btn = (Button) findViewById(R.id.button1);
 
 		btn.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				
 
 				FragmentTransaction ft = getFragmentManager().beginTransaction();
 				ft.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right);
@@ -101,10 +100,10 @@ public class MainActivity extends Activity implements OnItemClickListener {
 				if (!welcomeFrg.isVisible()) {
 					 
 		            ft.replace(R.id.container, welcomeFrg, "detailFragment");
-		            
+		            btn.setBackgroundResource(R.drawable.droidmore);
 				} else {
-					ft.remove(welcomeFrg);
-		            
+					ft.remove(welcomeFrg);				
+					btn.setBackgroundResource(R.drawable.droidmenu);
 				}
 				ft.commit();
 			}

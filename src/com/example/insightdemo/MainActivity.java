@@ -95,6 +95,12 @@ public class MainActivity extends Activity implements OnItemClickListener {
 			}
 		});
 		
+		//NFC
+		Intent sendIntent = new Intent();	    
+		sendIntent.setAction(Intent.ACTION_SEND);
+		sendIntent.putExtra(Intent.EXTRA_TEXT, "Control");
+		sendIntent.setType("pkinno/odin");
+		startActivityForResult(sendIntent, 0);
 		
 		// disable parts of items for non-login user
 		if (!login) {
@@ -128,7 +134,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
     			Log.d("aaa", result_status)	;
     			break;
     			    		
-			}		
+			}
 	}	
 	
 	public void showLoginDialog()
@@ -288,6 +294,13 @@ public class MainActivity extends Activity implements OnItemClickListener {
 		        			tvn.setBackgroundColor(Color.BLUE);
 		        			tvn = (TextView) rootView.findViewById(R.id.tv_lock);
 		        			tvn.setBackgroundColor(Color.WHITE);
+		        			
+		        			//NFC
+		        			Intent sendIntent = new Intent();
+	        				sendIntent.setAction(Intent.ACTION_SEND);
+	        				sendIntent.putExtra(Intent.EXTRA_TEXT, "Open");
+	        				sendIntent.setType("pkinno/odin");
+	        				startActivityForResult(sendIntent, 0);
 		        		}
 		        	}
 		        });   

@@ -1,4 +1,7 @@
 package com.example.insightdemo;
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -20,10 +23,13 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SeekBar;
@@ -39,6 +45,14 @@ public class MainActivity extends Activity implements OnItemClickListener {
 	private WelcomeFragment welcomeFrg = new WelcomeFragment(); 
 	private MyroomFragment myroomFrg = new MyroomFragment();
 	private MessageFragment messageFrg = new MessageFragment();
+	
+	public String ID1 = "123456";
+	public String ID2 = "654321";
+	public String PW1 = "1234";
+	public String PW2 = "5678";
+	
+	private static boolean bUserLogin = false;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 
@@ -136,7 +150,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 			}
 	}	
 	
-	public void showLoginDialog()
+	public void showLoginDialog(final Button _btn)
 	{
 		final Dialog dialog = new Dialog(this);
 		dialog.setContentView(R.layout.login_pop);
@@ -149,13 +163,27 @@ public class MainActivity extends Activity implements OnItemClickListener {
 				dialog.dismiss();
 			}
 		});
-		Button SigninButton = (Button) dialog.findViewById(R.id.btn_popSignin);
+		final Button SigninButton = (Button) dialog.findViewById(R.id.btn_popSignin);
 		SigninButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {		
-				String strURL1 = "http://tw.yahoo.com";
-				Intent ie = new Intent(Intent.ACTION_VIEW,Uri.parse(strURL1));
-				startActivity(ie);
+				//String strURL1 = "http://tw.yahoo.com";
+				//Intent ie = new Intent(Intent.ACTION_VIEW,Uri.parse(strURL1));
+				//startActivity(ie);
+				EditText etMS = (EditText) dialog.findViewById(R.id.et_popMS);
+				EditText etPW = (EditText) dialog.findViewById(R.id.et_popPW);
+				if ((etMS.getText().toString().equals(ID1) && etPW.getText().toString().equals(PW1)) ||
+					(etMS.getText().toString().equals(ID2) && etPW.getText().toString().equals(PW2))	)
+				{
+					bUserLogin = true;
+					_btn.setText("Sing Out");  
+
+					dialog.dismiss();
+				}
+				else
+				{
+					dialog.dismiss();
+				}
 			}
 		});
 		Button JoinButton = (Button) dialog.findViewById(R.id.btn_popJoinUs);
@@ -183,12 +211,26 @@ public class MainActivity extends Activity implements OnItemClickListener {
 					public void onClick(View v) {
 						final Dialog MessDlg = new Dialog(context);
 						MessDlg.requestWindowFeature(Window.FEATURE_NO_TITLE);
-						MessDlg.setContentView(R.layout.successed);
+						MessDlg.setContentView(R.layout.register2);
 						
 						MessDlg.show();
 						
 						JoinDlg.dismiss();
 						dialog.dismiss();
+						
+						Button ConfirmButton = (Button) MessDlg.findViewById(R.id.nConfirm);
+						ConfirmButton.setOnClickListener(new OnClickListener() {
+							@Override
+							public void onClick(View v) {
+								final Dialog confDlg = new Dialog(context);
+								confDlg.requestWindowFeature(Window.FEATURE_NO_TITLE);
+								confDlg.setContentView(R.layout.successed);
+								
+								confDlg.show();
+								
+								MessDlg.dismiss();
+							}
+						});
 					}
 				});
 			}
@@ -300,6 +342,14 @@ public class MainActivity extends Activity implements OnItemClickListener {
 	        				sendIntent.putExtra(Intent.EXTRA_TEXT, "Open");
 	        				sendIntent.setType("pkinno/odin");
 	        				startActivityForResult(sendIntent, 0);
+	        				
+	        				ImageView iv = (ImageView) rootView.findViewById(R.id.imageofnfc);
+	        				AlphaAnimation alphaAnimation1 = new AlphaAnimation(0.1f, 1.0f);  
+	        				alphaAnimation1.setDuration(1000);  
+	        				alphaAnimation1.setRepeatCount(Animation.INFINITE);  
+	        				alphaAnimation1.setRepeatMode(Animation.REVERSE);  
+	        				iv.setAnimation(alphaAnimation1);
+	        				alphaAnimation1.start(); 
 		        		}
 		        	}
 		        });   
@@ -312,7 +362,15 @@ public class MainActivity extends Activity implements OnItemClickListener {
 	//welcome page
 	public static class WelcomeFragment extends Fragment {
 
-		private ListView listView;
+		
+		private ListView listV;
+	    //List<List_Initem> movie_list = new ArrayList<List_Initem>();
+	    
+	    
+		//private ListView listView;
+		final List<List_Initem> wellcome_list = new ArrayList<List_Initem>();
+		private MyAdapter adapter;
+		
 		private Button signinBtn;
 		public WelcomeFragment() {
 		}
@@ -329,23 +387,57 @@ public class MainActivity extends Activity implements OnItemClickListener {
 			View rootView = inflater.inflate(R.layout.welcome, container,
 					false);
 			
-			String[] welcome = getResources().getStringArray(R.array.welcome_array);
-			listView = (ListView) rootView.findViewById(R.id.welcomeList);
-			ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), 
-					 android.R.layout.simple_expandable_list_item_1, welcome);
+			final String[] welcome = getResources().getStringArray(R.array.welcome_array);
+			int[] wecome_type = getResources().getIntArray(R.array.wellcome_type);
+			//ImageView iv = null;
+			if (wellcome_list.size() != 0)
+				wellcome_list.removeAll(wellcome_list);
+			
+			for (int i = 0; i < welcome.length; i++)
+			{
+				if (bUserLogin == true)
+					wellcome_list.add(new List_Initem(1, welcome[i]/*, iv*/));
+				else
+					wellcome_list.add(new List_Initem(wecome_type[i], welcome[i]/*, iv*/));
+			}
+			
+			
+			//listView = (ListView) rootView.findViewById(R.id.welcomeList);
+			listV=(ListView)rootView.findViewById(R.id.welcomeList);
+			adapter = new MyAdapter(getActivity(),wellcome_list);
+			listV.setAdapter(adapter);
+			
+			
+			//ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), 
+					// android.R.layout.simple_expandable_list_item_1, welcome);
 
-			listView.setAdapter(adapter);
+			//listView.setAdapter(adapter);
 			
 			signinBtn = (Button) rootView.findViewById(R.id.welcomeBtn);
+			if (bUserLogin == true)
+			{
+				//bUserLogin = false;
+				signinBtn.setText("Sing Out");
+			}
+			
+			
 			signinBtn.setOnClickListener(new OnClickListener()
 			{
 				  public void onClick(View arg0)
 				  {
-					  ((MainActivity)getActivity()).showLoginDialog();
+					  if (bUserLogin == true)
+					  {
+						  bUserLogin = false;
+						  signinBtn.setText("Sing In");
+					  }
+					  else
+					  {
+						  ((MainActivity)getActivity()).showLoginDialog(signinBtn);
+					  }
 				  }
 			});
 			
-			listView.setOnItemClickListener(new OnItemClickListener() {
+			listV.setOnItemClickListener(new OnItemClickListener() {
 			    @Override
 			    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 					switch ((int)id)

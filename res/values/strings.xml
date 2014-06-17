@@ -17,7 +17,17 @@
     <string name="prompt1">Forget my Password/Membership Number</string>
     <string name="prompt2">Not yet a family member</string>
     <string name="prompt3">Join Now !</string>
-    <string name="closepop">close</string><string-array name="welcome_array">
+    <string name="closepop">close</string>
+    <integer-array name="wellcome_type">
+        <item>1</item>
+        <item>1</item>
+        <item>0</item>
+        <item>1</item>
+        <item>0</item>
+        <item>1</item>
+        <item>1</item>
+    </integer-array>
+    <string-array name="welcome_array">
         <item>BOOK A ROOM</item>
         <item>HOTEL TOUR</item>
         <item>MY ROOM</item>
@@ -49,5 +59,6 @@
     <string name="reg_message2">Membership Number</string>
     <string name="reg_hint1">Please enter a password</string>
     <string name="reg_hint2">Please confirm your new password</string>
+    
     
 </resources>

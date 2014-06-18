@@ -25,6 +25,8 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.view.animation.Animation.AnimationListener;
+import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
@@ -42,13 +44,13 @@ public class MainActivity extends Activity implements OnItemClickListener {
 
 	private Context context = this;
 	private boolean login = false;
-	private WelcomeFragment welcomeFrg = new WelcomeFragment(); 
-	private MyroomFragment myroomFrg = new MyroomFragment();
+	static WelcomeFragment welcomeFrg = new WelcomeFragment(); 
+	static  MyroomFragment myroomFrg = new MyroomFragment();
 	private MessageFragment messageFrg = new MessageFragment();
 	
-	public String ID1 = "123456";
+	public String ID1 = "1";
 	public String ID2 = "654321";
-	public String PW1 = "1234";
+	public String PW1 = "1";
 	public String PW2 = "5678";
 	
 	private static boolean bUserLogin = false;
@@ -139,16 +141,50 @@ public class MainActivity extends Activity implements OnItemClickListener {
 	
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		Log.d("aaa", "in")	;
-		if(data != null)	
-			switch(requestCode){	    		
-    		case 0:
-    			String result_status = data.getExtras().get(Intent.EXTRA_TEXT).toString();    			    			    			    			
-    			Log.d("aaa", result_status)	;
-    			break;
-    			    		
-			}
 	}	
+	
+	public void showWelcome()
+	{
+		
+		Fragment currentFragment = getFragmentManager().findFragmentByTag("unlockFragment");
+	    FragmentTransaction fragTransaction = getFragmentManager().beginTransaction();
+	    fragTransaction.detach(currentFragment);
+	    fragTransaction.attach(currentFragment);
+	    fragTransaction.commit();
+	    
+		Dialog dialog = new Dialog(this);
+		dialog.setContentView(R.layout.welcome_home);
+		dialog.setOnDismissListener(new DialogInterface.OnDismissListener(){ 
+            @Override 
+            public void onDismiss(DialogInterface dialog) { 
+            	jumpMyRoomPage();
+            } 
+        }); 
+		dialog.show();
+
+	}
+	
+	public void showAccessDenied()
+	{
+		Fragment currentFragment = getFragmentManager().findFragmentByTag("unlockFragment");
+	    FragmentTransaction fragTransaction = getFragmentManager().beginTransaction();
+	    fragTransaction.detach(currentFragment);
+	    fragTransaction.attach(currentFragment);
+	    fragTransaction.commit();
+	    
+	    Dialog dialog = new Dialog(this);
+		dialog.setContentView(R.layout.access_denied);
+		
+		dialog.setOnDismissListener(new DialogInterface.OnDismissListener(){ 
+            @Override 
+            public void onDismiss(DialogInterface dialog) { 
+            	jumpMyRoomPage();
+            } 
+        }); 
+		
+		dialog.show();
+		
+	}
 	
 	public void showLoginDialog(final Button _btn)
 	{
@@ -184,6 +220,16 @@ public class MainActivity extends Activity implements OnItemClickListener {
 				{
 					dialog.dismiss();
 				}
+				
+				FragmentTransaction ft = getFragmentManager().beginTransaction();
+				ft.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right);
+				
+				if (welcomeFrg.isVisible()) {
+					ft.remove(welcomeFrg);
+					
+				}
+				ft.replace(R.id.container, welcomeFrg, "detailFragment");
+				ft.commit();
 			}
 		});
 		Button JoinButton = (Button) dialog.findViewById(R.id.btn_popJoinUs);
@@ -564,6 +610,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 	//unlock page
 	public static class UnlockFragment extends Fragment {
 
+		private AlphaAnimation alphaAnimation1 = new AlphaAnimation(0.1f, 1.0f);  
 		public UnlockFragment() {
 		}
 		
@@ -573,6 +620,32 @@ public class MainActivity extends Activity implements OnItemClickListener {
 	        
 	        
 	    }  
+		@Override
+		public void onActivityResult(int requestCode, int resultCode, Intent data) {
+			super.onActivityResult(requestCode, resultCode, data);
+			Log.d("aaa", "in")	;
+			if(data != null)	
+				switch(requestCode){	    		
+	    		case 0:
+	    			
+	    			String result_status = data.getExtras().get(Intent.EXTRA_TEXT).toString();    			    			    			    			
+	    			Log.d("aaa", result_status);
+	    			alphaAnimation1.cancel();
+	    			
+	    			if(result_status.hashCode() == 1177596730)
+	    			{
+	    				((MainActivity)getActivity()).showWelcome();
+	    			}
+	    			else
+	    			{
+	    				((MainActivity)getActivity()).showAccessDenied();
+	    			}
+	    			
+	    			break;
+	    			    		
+				}
+			
+		}	
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
@@ -609,12 +682,14 @@ public class MainActivity extends Activity implements OnItemClickListener {
 	        				startActivityForResult(sendIntent, 0);
 	        				
 	        				ImageView iv = (ImageView) rootView.findViewById(R.id.imageofnfc);
-	        				AlphaAnimation alphaAnimation1 = new AlphaAnimation(0.1f, 1.0f);  
 	        				alphaAnimation1.setDuration(1000);  
 	        				alphaAnimation1.setRepeatCount(Animation.INFINITE);  
-	        				alphaAnimation1.setRepeatMode(Animation.REVERSE);  
+	        				alphaAnimation1.setRepeatMode(Animation.REVERSE);
+	        				
 	        				iv.setAnimation(alphaAnimation1);
-	        				alphaAnimation1.start(); 
+	        				alphaAnimation1.start();
+	        				
+	        				iv.setVisibility(View.GONE);
 		        		}
 		        	}
 		        });   
@@ -693,6 +768,15 @@ public class MainActivity extends Activity implements OnItemClickListener {
 					  {
 						  bUserLogin = false;
 						  signinBtn.setText("Sing In");
+						  FragmentTransaction ft = getFragmentManager().beginTransaction();
+						  ft.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right);
+
+							if (MainActivity.welcomeFrg.isVisible()) {
+								ft.remove(MainActivity.welcomeFrg);
+								
+							}
+							ft.replace(R.id.container, MainActivity.welcomeFrg, "detailFragment");
+							ft.commit();
 					  }
 					  else
 					  {

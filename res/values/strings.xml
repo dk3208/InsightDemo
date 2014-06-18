@@ -60,6 +60,7 @@
     <string name="reg_message2">Membership Number</string>
     <string name="reg_hint1">Please enter a password</string>
     <string name="reg_hint2">Please confirm your new password</string>
+    <string name="unlock">開鎖成功</string>
     
     
 </resources>

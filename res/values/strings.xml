@@ -7,12 +7,13 @@
     <string name="MP_OK">確定</string>
     <string name="MP_cancel">取消</string>
     
-    <string name="app_name">Insight</string>
+    <string name="app_name">Insight Hotel</string>
     <string name="action_settings">Settings</string>
     
        <!-- login popup window string -->
     <string name="ms_st">Membership_Number</string> 
     <string name="pw_st">Password</string>
+    <string name="rn_st">Room Number</string>
     <string name="sign_in">Sign in</string>
     <string name="prompt1">Forget my Password/Membership Number</string>
     <string name="prompt2">Not yet a family member</string>
@@ -22,8 +23,8 @@
         <item>1</item>
         <item>1</item>
         <item>0</item>
-        <item>1</item>
         <item>0</item>
+        <item>1</item>
         <item>1</item>
         <item>1</item>
     </integer-array>

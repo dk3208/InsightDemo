@@ -261,7 +261,9 @@ public class MainActivity extends Activity implements OnItemClickListener {
 	//myroom page
 	public static class MyroomFragment extends Fragment {
 
+		public Context mycontext;
 		public MyroomFragment() {
+			//mycontext = this.getc;
 		}
 		
 		@Override  
@@ -275,7 +277,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.myroom_page_1, container,
 					false);
-			
+			mycontext = rootView.getContext();
 			rootView.setBackgroundColor(Color.BLACK);
 			Button unlock = (Button)rootView.findViewById(R.id.btn2);
 			unlock.setOnClickListener(new OnClickListener() {
@@ -289,7 +291,270 @@ public class MainActivity extends Activity implements OnItemClickListener {
 					
 					ft.commit();
 				  }
-				});
+			});
+			
+			Button instanthelp = (Button)rootView.findViewById(R.id.btn6);
+			instanthelp.setOnClickListener(new OnClickListener() {
+
+				  public void onClick(View arg0) {
+					  
+					// custom dialog
+					final Dialog JoinDlg = new Dialog(mycontext);
+					JoinDlg.setContentView(R.layout.instant_help1);
+					//JoinDlg.setTitle("Join Page...");
+					
+					JoinDlg.show();
+					
+					Button button1 = (Button)JoinDlg.findViewById(R.id.button1);
+					button1.setOnClickListener(new OnClickListener() {
+
+						  public void onClick(View arg0) {
+							  
+							// custom dialog
+							final Dialog JoinDlg2 = new Dialog(mycontext);
+							JoinDlg2.setContentView(R.layout.instant_help2);
+							
+							JoinDlg2.show();
+							
+							Button button1 = (Button)JoinDlg2.findViewById(R.id.button1);
+							button1.setOnClickListener(new OnClickListener() {
+
+								  public void onClick(View arg0) {
+									  
+									// custom dialog
+									final Dialog JoinDlg3 = new Dialog(mycontext);
+									JoinDlg3.setContentView(R.layout.instant_help3);
+									
+									JoinDlg3.show();
+									
+									Button button1 = (Button)JoinDlg3.findViewById(R.id.button1);
+									button1.setOnClickListener(new OnClickListener() {
+
+										  public void onClick(View arg0) {
+											  
+											// custom dialog
+											final Dialog JoinDlg4 = new Dialog(mycontext);
+											JoinDlg4.setContentView(R.layout.successed);
+											
+											JoinDlg4.show();
+											JoinDlg3.dismiss();
+											JoinDlg2.dismiss();
+											JoinDlg.dismiss();
+										  }
+									});
+									
+									Button button2 = (Button)JoinDlg3.findViewById(R.id.button2);
+									button2.setOnClickListener(new OnClickListener() {
+
+										  public void onClick(View arg0) {
+											  JoinDlg2.dismiss();
+												JoinDlg.dismiss();
+											  JoinDlg3.dismiss();
+										  }
+									});
+								  }
+							});
+							
+							Button button2 = (Button)JoinDlg2.findViewById(R.id.button2);
+							button2.setOnClickListener(new OnClickListener() {
+
+								  public void onClick(View arg0) {
+									  
+									JoinDlg2.dismiss();
+									JoinDlg.dismiss();
+								  }
+							});
+						  }
+					});
+					
+					Button button2 = (Button)JoinDlg.findViewById(R.id.button2);
+					button2.setOnClickListener(new OnClickListener() {
+
+						  public void onClick(View arg0) {
+							  
+							// custom dialog
+							final Dialog JoinDlg2 = new Dialog(mycontext);
+							JoinDlg2.setContentView(R.layout.instant_help2);
+							
+							JoinDlg2.show();
+							
+							Button button1 = (Button)JoinDlg2.findViewById(R.id.button1);
+							button1.setOnClickListener(new OnClickListener() {
+
+								  public void onClick(View arg0) {
+									  
+									// custom dialog
+									final Dialog JoinDlg3 = new Dialog(mycontext);
+									JoinDlg3.setContentView(R.layout.instant_help3);
+									
+									JoinDlg3.show();
+									
+									Button button1 = (Button)JoinDlg3.findViewById(R.id.button1);
+									button1.setOnClickListener(new OnClickListener() {
+
+										  public void onClick(View arg0) {
+											  
+											// custom dialog
+											final Dialog JoinDlg4 = new Dialog(mycontext);
+											JoinDlg4.setContentView(R.layout.successed);
+											
+											JoinDlg4.show();
+											JoinDlg3.dismiss();
+											JoinDlg2.dismiss();
+											JoinDlg.dismiss();
+										  }
+									});
+									
+									Button button2 = (Button)JoinDlg3.findViewById(R.id.button2);
+									button2.setOnClickListener(new OnClickListener() {
+
+										  public void onClick(View arg0) {
+											  
+											JoinDlg2.dismiss();
+											JoinDlg.dismiss();
+											JoinDlg3.dismiss();
+										  }
+									});
+								  }
+							});
+							
+							Button button2 = (Button)JoinDlg2.findViewById(R.id.button2);
+							button2.setOnClickListener(new OnClickListener() {
+
+								  public void onClick(View arg0) {
+									  
+										JoinDlg2.dismiss();
+										JoinDlg.dismiss();
+								  }
+							});
+						  }
+					});
+					
+					Button button3 = (Button)JoinDlg.findViewById(R.id.button3);
+					button3.setOnClickListener(new OnClickListener() {
+
+						  public void onClick(View arg0) {
+							  
+							// custom dialog
+							final Dialog JoinDlg2 = new Dialog(mycontext);
+							JoinDlg2.setContentView(R.layout.instant_help2);
+							
+							JoinDlg2.show();
+							
+							Button button1 = (Button)JoinDlg2.findViewById(R.id.button1);
+							button1.setOnClickListener(new OnClickListener() {
+
+								  public void onClick(View arg0) {
+									  
+									// custom dialog
+									final Dialog JoinDlg3 = new Dialog(mycontext);
+									JoinDlg3.setContentView(R.layout.instant_help3);
+									
+									JoinDlg3.show();
+									
+									Button button1 = (Button)JoinDlg3.findViewById(R.id.button1);
+									button1.setOnClickListener(new OnClickListener() {
+
+										  public void onClick(View arg0) {
+											  
+											// custom dialog
+											final Dialog JoinDlg4 = new Dialog(mycontext);
+											JoinDlg4.setContentView(R.layout.successed);
+											
+											JoinDlg2.dismiss();
+											JoinDlg.dismiss();
+										JoinDlg3.dismiss();
+											JoinDlg4.show();
+										  }
+									});
+									
+									Button button2 = (Button)JoinDlg3.findViewById(R.id.button2);
+									button2.setOnClickListener(new OnClickListener() {
+
+										  public void onClick(View arg0) {
+											  
+												JoinDlg2.dismiss();
+												JoinDlg.dismiss();
+											JoinDlg3.dismiss();
+										  }
+									});
+								  }
+							});
+							
+							Button button2 = (Button)JoinDlg2.findViewById(R.id.button2);
+							button2.setOnClickListener(new OnClickListener() {
+
+								  public void onClick(View arg0) {
+										JoinDlg2.dismiss();
+										JoinDlg.dismiss(); 
+								  }
+							});
+						  }
+					});
+					
+					Button button4 = (Button)JoinDlg.findViewById(R.id.button4);
+					button4.setOnClickListener(new OnClickListener() {
+
+						  public void onClick(View arg0) {
+							  
+							// custom dialog
+							final Dialog JoinDlg2 = new Dialog(mycontext);
+							JoinDlg2.setContentView(R.layout.instant_help2);
+							
+							JoinDlg2.show();
+							
+							Button button1 = (Button)JoinDlg2.findViewById(R.id.button1);
+							button1.setOnClickListener(new OnClickListener() {
+
+								  public void onClick(View arg0) {
+									  
+									// custom dialog
+									final Dialog JoinDlg3 = new Dialog(mycontext);
+									JoinDlg3.setContentView(R.layout.instant_help3);
+									
+									JoinDlg3.show();
+									
+									Button button1 = (Button)JoinDlg3.findViewById(R.id.button1);
+									button1.setOnClickListener(new OnClickListener() {
+
+										  public void onClick(View arg0) {
+											  
+												// custom dialog
+												final Dialog JoinDlg4 = new Dialog(mycontext);
+												JoinDlg4.setContentView(R.layout.successed);
+												
+												JoinDlg2.dismiss();
+												JoinDlg.dismiss();
+											JoinDlg3.dismiss();
+												JoinDlg4.show();
+										  }
+									});
+									
+									Button button2 = (Button)JoinDlg3.findViewById(R.id.button2);
+									button2.setOnClickListener(new OnClickListener() {
+
+										  public void onClick(View arg0) {
+											  JoinDlg2.dismiss();
+												JoinDlg.dismiss();
+											JoinDlg3.dismiss();
+										  }
+									});
+								  }
+							});
+							
+							Button button2 = (Button)JoinDlg2.findViewById(R.id.button2);
+							button2.setOnClickListener(new OnClickListener() {
+
+								  public void onClick(View arg0) {
+									  
+										JoinDlg2.dismiss();
+										JoinDlg.dismiss();
+								  }
+							});
+						  }
+					});
+				  }
+			});
 			
 			return rootView;
 		}
@@ -358,7 +623,6 @@ public class MainActivity extends Activity implements OnItemClickListener {
 			}
 		}
 		
-	
 	//welcome page
 	public static class WelcomeFragment extends Fragment {
 
@@ -441,7 +705,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 			    @Override
 			    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 					
-			    	if ((int)id == 2 || (int)id == 4)
+			    	if ((int)id == 2 || (int)id == 3)
 			    		if (bUserLogin == false)
 			    			return;
 			    	

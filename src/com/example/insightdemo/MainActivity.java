@@ -892,12 +892,12 @@ public class MainActivity extends Activity implements OnItemClickListener {
 		        listDataHeader = new ArrayList<String>();
 		        listDataChild = new HashMap<String, List<String>>();
 		 
-		        if (messStr == "" )
+		        if (messStr == ""  && top250.size() == 0)
 		        {
 		        	listDataHeader.add("No message");
 			        // Adding child data
 			        //List<String> top250 = new ArrayList<String>();
-			        top250.add(messStr);
+			        //top250.add(messStr);
 			        
 			        listDataChild.put(listDataHeader.get(0), top250); // Header, Child data
 		        }
@@ -913,6 +913,16 @@ public class MainActivity extends Activity implements OnItemClickListener {
 			        listDataChild.put(listDataHeader.get(0), top250); // Header, Child data
 			        
 			        bNewMess = false;
+			        messStr = "";
+		        }
+		        else
+		        {
+		        	listDataHeader.add("You have message");
+			        // Adding child data
+			        //List<String> top250 = new ArrayList<String>();
+			        //top250.add(messStr);
+			        
+			        listDataChild.put(listDataHeader.get(0), top250); // Header, Child data
 		        }
 		    }
 		

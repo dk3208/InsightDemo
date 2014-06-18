@@ -53,6 +53,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 	public String PW2 = "5678";
 	
 	public static String messStr = "";
+	public static boolean bNewMess = false;
 	
 	private static boolean bUserLogin = false;
 	
@@ -528,6 +529,9 @@ public class MainActivity extends Activity implements OnItemClickListener {
 												EditText lv = (EditText) JoinDlg3.findViewById(R.id.editText1);
 												messStr = lv.getText().toString();
 												
+												if (messStr != "")
+													bNewMess = true;
+												
 												JoinDlg2.dismiss();
 												JoinDlg.dismiss();
 												JoinDlg3.dismiss();
@@ -657,16 +661,26 @@ public class MainActivity extends Activity implements OnItemClickListener {
 			
 			final String[] welcome = getResources().getStringArray(R.array.welcome_array);
 			int[] wecome_type = getResources().getIntArray(R.array.wellcome_type);
-			//ImageView iv = null;
+			ImageView iv = (ImageView)rootView.findViewById(R.id.item_image);
 			if (wellcome_list.size() != 0)
 				wellcome_list.removeAll(wellcome_list);
 			
 			for (int i = 0; i < welcome.length; i++)
 			{
 				if (bUserLogin == true)
-					wellcome_list.add(new List_Initem(1, welcome[i]/*, iv*/));
+				{
+					if (bNewMess ==  true && i == 5)
+					{
+						//iv.setVisibility(View.VISIBLE);
+						wellcome_list.add(new List_Initem(1, welcome[i], iv));
+					}
+					else
+						wellcome_list.add(new List_Initem(1, welcome[i], iv));
+				}
 				else
-					wellcome_list.add(new List_Initem(wecome_type[i], welcome[i]/*, iv*/));
+				{
+					wellcome_list.add(new List_Initem(wecome_type[i], welcome[i], iv));
+				}
 			}
 			
 			

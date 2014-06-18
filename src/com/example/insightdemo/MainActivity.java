@@ -440,7 +440,12 @@ public class MainActivity extends Activity implements OnItemClickListener {
 			listV.setOnItemClickListener(new OnItemClickListener() {
 			    @Override
 			    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-					switch ((int)id)
+					
+			    	if ((int)id == 2 || (int)id == 4)
+			    		if (bUserLogin == false)
+			    			return;
+			    	
+			    	switch ((int)id)
 					{
 					case 2:
 						 ((MainActivity)getActivity()).jumpMyRoomPage();

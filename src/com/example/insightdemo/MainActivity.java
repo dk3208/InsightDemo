@@ -1,5 +1,6 @@
 package com.example.insightdemo;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import android.app.Activity;
@@ -27,9 +28,9 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SeekBar;
@@ -50,6 +51,8 @@ public class MainActivity extends Activity implements OnItemClickListener {
 	public String ID2 = "654321";
 	public String PW1 = "1234";
 	public String PW2 = "5678";
+	
+	public static String messStr = "";
 	
 	private static boolean bUserLogin = false;
 	
@@ -510,22 +513,24 @@ public class MainActivity extends Activity implements OnItemClickListener {
 									  
 									// custom dialog
 									final Dialog JoinDlg3 = new Dialog(mycontext);
-									JoinDlg3.setContentView(R.layout.instant_help3);
+									JoinDlg3.setContentView(R.layout.instent_help4);
 									
 									JoinDlg3.show();
 									
 									Button button1 = (Button)JoinDlg3.findViewById(R.id.button1);
 									button1.setOnClickListener(new OnClickListener() {
-
+										// input user message
 										  public void onClick(View arg0) {
 											  
 												// custom dialog
 												final Dialog JoinDlg4 = new Dialog(mycontext);
 												JoinDlg4.setContentView(R.layout.successed);
+												EditText lv = (EditText) JoinDlg3.findViewById(R.id.editText1);
+												messStr = lv.getText().toString();
 												
 												JoinDlg2.dismiss();
 												JoinDlg.dismiss();
-											JoinDlg3.dismiss();
+												JoinDlg3.dismiss();
 												JoinDlg4.show();
 										  }
 									});
@@ -534,9 +539,9 @@ public class MainActivity extends Activity implements OnItemClickListener {
 									button2.setOnClickListener(new OnClickListener() {
 
 										  public void onClick(View arg0) {
-											  JoinDlg2.dismiss();
+											  	JoinDlg2.dismiss();
 												JoinDlg.dismiss();
-											JoinDlg3.dismiss();
+												JoinDlg3.dismiss();
 										  }
 									});
 								  }
@@ -546,7 +551,6 @@ public class MainActivity extends Activity implements OnItemClickListener {
 							button2.setOnClickListener(new OnClickListener() {
 
 								  public void onClick(View arg0) {
-									  
 										JoinDlg2.dismiss();
 										JoinDlg.dismiss();
 								  }
@@ -729,23 +733,64 @@ public class MainActivity extends Activity implements OnItemClickListener {
 	//myroom page
 	public static class MessageFragment extends Fragment {
 
+		public ExpandableListAdapter2 listAdapter;
+	    ExpandableListView expListView;
+	    List<String> listDataHeader;
+	    HashMap<String, List<String>> listDataChild;
+	    
 		public MessageFragment() {
 		}
 		
 		@Override  
 	    public void onCreate(Bundle savedInstanceState) {  
-	        super.onCreate(savedInstanceState);  
-	             
+	        super.onCreate(savedInstanceState);	             
 	    }  
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.message, container, false);
 			
+			// get the listview
+	        expListView = (ExpandableListView) rootView.findViewById(R.id.expandableListView1);
+	 
+	        // preparing list data
+	        prepareListData();
+	 
+	        listAdapter = new ExpandableListAdapter2(rootView.getContext(), listDataHeader, listDataChild);
+	 
+	        // setting list adapter 
+	        expListView.setAdapter(listAdapter);
+			
 			rootView.setBackgroundColor(Color.BLACK);
 
 			return rootView;
 		}
+		
+		 private void prepareListData() {
+		        listDataHeader = new ArrayList<String>();
+		        listDataChild = new HashMap<String, List<String>>();
+		 
+		        if (messStr == "")
+		        {
+		        	listDataHeader.add("No message");
+			        // Adding child data
+			        List<String> top250 = new ArrayList<String>();
+			        top250.add(messStr);
+			        
+			        listDataChild.put(listDataHeader.get(0), top250); // Header, Child data
+		        }
+		        else
+		        {
+			        // Adding child data
+			        listDataHeader.add("new message!!!");
+			 
+			        // Adding child data
+			        List<String> top250 = new ArrayList<String>();
+			        top250.add(messStr);
+			 
+			        listDataChild.put(listDataHeader.get(0), top250); // Header, Child data
+		        }
+		    }
 		
 	}
 	

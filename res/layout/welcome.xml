@@ -34,16 +34,6 @@
 		    android:text="Sign in"
 		    android:textColor="#000000" />
 
-		<ImageView
-		    android:id="@+id/welcomeImageView"
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:layout_alignParentTop="true"
-		    android:layout_marginRight="14dp"
-		    android:layout_toLeftOf="@+id/welcomeBtn"
-		    android:src="@drawable/ic_launcher" />
-\
-        
     </RelativeLayout>
 
     <ListView

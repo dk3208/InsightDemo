@@ -39,6 +39,7 @@ import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ViewFlipper;
 
 //roy give me money
 public class MainActivity extends Activity implements OnItemClickListener {
@@ -48,11 +49,9 @@ public class MainActivity extends Activity implements OnItemClickListener {
 	static WelcomeFragment welcomeFrg = new WelcomeFragment(); 
 	static  MyroomFragment myroomFrg = new MyroomFragment();
 	private MessageFragment messageFrg = new MessageFragment();
-	
-	public String ID1 = "1";
-	public String ID2 = "654321";
-	public String PW1 = "1";
-	public String PW2 = "5678";
+	private ViewFlipper flipper = null;
+	public String ID1 = "123456";
+	public String PW1 = "1234";
 	
 	public static String messStr = "";
 	
@@ -67,18 +66,10 @@ public class MainActivity extends Activity implements OnItemClickListener {
 		setContentView(R.layout.activity_main);
 		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE,
 				R.layout.titlebar);
-
-		ImageView img1 = (ImageView) findViewById(R.id.imageView1);
-		img1.setBackgroundColor(Color.rgb(170, 170, 15));
-
-		ImageView img2 = (ImageView) findViewById(R.id.imageView2);
-		img2.setBackgroundColor(Color.rgb(170, 170, 15));
-
-		ImageView img3 = (ImageView) findViewById(R.id.imageView3);
-		img3.setBackgroundColor(Color.rgb(170, 170, 15));
-
-		ImageView img4 = (ImageView) findViewById(R.id.imageView4);
-		img4.setBackgroundColor(Color.rgb(170, 170, 15));
+		
+		
+		flipper = (ViewFlipper) findViewById(R.id.flipper1);
+		flipper.startFlipping();
 		
 		
 		TextView view = (TextView) findViewById(R.id.textHomeLink);
@@ -105,9 +96,11 @@ public class MainActivity extends Activity implements OnItemClickListener {
 					 
 		            ft.replace(R.id.container, welcomeFrg, "detailFragment");
 		            btn.setBackgroundResource(R.drawable.droidmore);
+		            flipper.stopFlipping();
 				} else {
 					ft.remove(welcomeFrg);				
 					btn.setBackgroundResource(R.drawable.droidmenu);
+					flipper.startFlipping();
 				}
 				ft.commit();
 			}
@@ -156,6 +149,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 	    fragTransaction.commit();
 	    
 		Dialog dialog = new Dialog(this);
+		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		dialog.setContentView(R.layout.welcome_home);
 		dialog.setOnDismissListener(new DialogInterface.OnDismissListener(){ 
             @Override 
@@ -176,6 +170,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 	    fragTransaction.commit();
 	    
 	    Dialog dialog = new Dialog(this);
+	    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		dialog.setContentView(R.layout.access_denied);
 		
 		dialog.setOnDismissListener(new DialogInterface.OnDismissListener(){ 
@@ -211,8 +206,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 				//startActivity(ie);
 				EditText etMS = (EditText) dialog.findViewById(R.id.et_popMS);
 				EditText etPW = (EditText) dialog.findViewById(R.id.et_popPW);
-				if ((etMS.getText().toString().equals(ID1) && etPW.getText().toString().equals(PW1)) ||
-					(etMS.getText().toString().equals(ID2) && etPW.getText().toString().equals(PW2))	)
+				if ((etMS.getText().toString().equals(ID1) && etPW.getText().toString().equals(PW1)))
 				{
 					bUserLogin = true;
 					_btn.setText("Sing Out");  
@@ -614,6 +608,9 @@ public class MainActivity extends Activity implements OnItemClickListener {
 	//unlock page
 	public static class UnlockFragment extends Fragment {
 
+		View rootView = null;
+		public String room_number = "654321";
+		public String member_id = "5678";
 		private AlphaAnimation alphaAnimation1 = new AlphaAnimation(0.1f, 1.0f);  
 		public UnlockFragment() {
 		}
@@ -653,13 +650,11 @@ public class MainActivity extends Activity implements OnItemClickListener {
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-			final View rootView = inflater.inflate(R.layout.myroom_page_2, container,
-					false);
+			 	rootView = inflater.inflate(R.layout.myroom_page_2, container, false);
 		        		 				
 				rootView.setBackgroundColor(Color.BLACK);
 				VerticalSeekBar verticalSeebar = (VerticalSeekBar)rootView.findViewById(R.id.verticalSeekbar);
-				
-
+				verticalSeebar.setEnabled(false);
 		        verticalSeebar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 		        	public void onStopTrackingTouch(SeekBar seekBar) {
 		        		
@@ -697,7 +692,24 @@ public class MainActivity extends Activity implements OnItemClickListener {
 		        		}
 		        	}
 		        });   
-
+		        
+		        Button btnOk = (Button)rootView.findViewById(R.id.btnOk);
+				
+		        btnOk.setOnClickListener(new OnClickListener()
+				{
+					  public void onClick(View arg0)
+					  {
+						  EditText room = (EditText) rootView.findViewById(R.id.editText1);
+					  
+						  EditText id = (EditText) rootView.findViewById(R.id.editText2);
+						  if (room.getText().toString().equals(room_number) && (id.getText().toString().equals(member_id)))
+						  {
+							  VerticalSeekBar verticalSeebar = (VerticalSeekBar)rootView.findViewById(R.id.verticalSeekbar);
+							  verticalSeebar.setEnabled(true);
+						  }
+					  }
+				});
+		        
 				return rootView;
 			}
 		}

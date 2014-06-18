@@ -831,7 +831,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 			    @Override
 			    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 					
-			    	if ((int)id == 2 || (int)id == 3)
+			    	//if ((int)id == 2 || (int)id == 3)
 			    		if (bUserLogin == false)
 			    			return;
 			    	

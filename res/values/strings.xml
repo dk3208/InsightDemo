@@ -20,13 +20,13 @@
     <string name="prompt3">Join Now !</string>
     <string name="closepop">close</string>
     <integer-array name="wellcome_type">
-        <item>1</item>
-        <item>1</item>
         <item>0</item>
         <item>0</item>
-        <item>1</item>
-        <item>1</item>
-        <item>1</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
     </integer-array>
     <string-array name="welcome_array">
         <item>BOOK A ROOM</item>

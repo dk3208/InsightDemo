@@ -55,7 +55,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 	
 	public static String messStr = "";
 	public static boolean bNewMess = false;
-	
+	public static List<String> top250 = new ArrayList<String>();
 	private static boolean bUserLogin = false;
 	
 	@Override
@@ -210,7 +210,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 				if ((etMS.getText().toString().equals(ID1) && etPW.getText().toString().equals(PW1)))
 				{
 					bUserLogin = true;
-					_btn.setText("Sing Out");  
+					_btn.setText("Sign Out");  
 
 					dialog.dismiss();
 				}
@@ -376,6 +376,10 @@ public class MainActivity extends Activity implements OnItemClickListener {
 
 										  public void onClick(View arg0) {
 											  
+											  messStr = "This additional request will charge you $$$."+
+													  	"Your request will be completed in XX mins.";
+											  if (messStr != "")
+													bNewMess = true;
 											// custom dialog
 											final Dialog JoinDlg4 = new Dialog(mycontext);
 											JoinDlg4.setContentView(R.layout.successed);
@@ -438,6 +442,10 @@ public class MainActivity extends Activity implements OnItemClickListener {
 
 										  public void onClick(View arg0) {
 											  
+											  messStr = "This additional request will charge you $$$."+
+													  	"Your request will be completed in XX mins.";
+											  if (messStr != "")
+													bNewMess = true;
 											// custom dialog
 											final Dialog JoinDlg4 = new Dialog(mycontext);
 											JoinDlg4.setContentView(R.layout.successed);
@@ -501,6 +509,10 @@ public class MainActivity extends Activity implements OnItemClickListener {
 
 										  public void onClick(View arg0) {
 											  
+											  messStr = "This additional request will charge you $$$."+
+													  	"Your request will be completed in XX mins.";
+											  if (messStr != "")
+													bNewMess = true;
 											// custom dialog
 											final Dialog JoinDlg4 = new Dialog(mycontext);
 											JoinDlg4.setContentView(R.layout.successed);
@@ -567,7 +579,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 												final Dialog JoinDlg4 = new Dialog(mycontext);
 												JoinDlg4.setContentView(R.layout.successed);
 												EditText lv = (EditText) JoinDlg3.findViewById(R.id.editText1);
-												messStr = lv.getText().toString();
+												messStr = "Operator will assist you asap... : "+lv.getText().toString();
 												
 												if (messStr != "")
 													bNewMess = true;
@@ -613,8 +625,8 @@ public class MainActivity extends Activity implements OnItemClickListener {
 	public static class UnlockFragment extends Fragment {
 
 		View rootView = null;
-		public String room_number = "654321";
-		public String member_id = "5678";
+		public String room_number = "123456";
+		public String member_id = "1234";
 		private AlphaAnimation alphaAnimation1 = new AlphaAnimation(0.1f, 1.0f);  
 		public UnlockFragment() {
 		}
@@ -786,7 +798,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 			if (bUserLogin == true)
 			{
 				//bUserLogin = false;
-				signinBtn.setText("Sing Out");
+				signinBtn.setText("Sign Out");
 			}
 			
 			
@@ -797,7 +809,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 					  if (bUserLogin == true)
 					  {
 						  bUserLogin = false;
-						  signinBtn.setText("Sing In");
+						  signinBtn.setText("Sign In");
 						  FragmentTransaction ft = getFragmentManager().beginTransaction();
 						  ft.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right);
 
@@ -880,25 +892,27 @@ public class MainActivity extends Activity implements OnItemClickListener {
 		        listDataHeader = new ArrayList<String>();
 		        listDataChild = new HashMap<String, List<String>>();
 		 
-		        if (messStr == "")
+		        if (messStr == "" )
 		        {
 		        	listDataHeader.add("No message");
 			        // Adding child data
-			        List<String> top250 = new ArrayList<String>();
+			        //List<String> top250 = new ArrayList<String>();
 			        top250.add(messStr);
 			        
 			        listDataChild.put(listDataHeader.get(0), top250); // Header, Child data
 		        }
-		        else
+		        else if (bNewMess == true)
 		        {
 			        // Adding child data
 			        listDataHeader.add("new message!!!");
 			 
 			        // Adding child data
-			        List<String> top250 = new ArrayList<String>();
+			        //List<String> top250 = new ArrayList<String>();
 			        top250.add(messStr);
 			 
 			        listDataChild.put(listDataHeader.get(0), top250); // Header, Child data
+			        
+			        bNewMess = false;
 		        }
 		    }
 		

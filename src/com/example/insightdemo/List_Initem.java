@@ -6,11 +6,11 @@ import android.widget.ImageView;
 public class List_Initem {
     private int type;	//color
     private String name;//title
-    //private ImageView image;//image
-    public List_Initem(int type,String name/*,ImageView image*/) {
+    private ImageView image;//image
+    public List_Initem(int type,String name,ImageView image) {
             this.type = type;
             this.name = name;
-            //this.image = image;
+            this.image = image;
     }
     public int getType(){
             return type;
@@ -24,10 +24,10 @@ public class List_Initem {
     public void setName(String name){
             this.name = name;
     }
-    /*public ImageView getImage(){
+    public ImageView getImage(){
             return image;
     }
     public void setTime(ImageView image){
             this.image = image;
-    }*/
+    }
 }

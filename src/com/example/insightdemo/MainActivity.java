@@ -864,6 +864,24 @@ public class MainActivity extends Activity implements OnItemClickListener {
 					}
 			    }
 			});
+			
+			if (bNewMess == true)
+			{
+				ImageView miv = (ImageView) rootView.findViewById(R.id.messageview);
+				miv.setVisibility(View.VISIBLE);
+				miv.setOnClickListener(new OnClickListener()
+				{
+					  public void onClick(View arg0)
+					  {
+						  ((MainActivity)getActivity()).jumpMessagePage();
+					  }
+				});
+			}
+			else
+			{
+				ImageView miv = (ImageView) rootView.findViewById(R.id.messageview);
+				miv.setVisibility(View.INVISIBLE);
+			}
 				
 			return rootView;
 		}

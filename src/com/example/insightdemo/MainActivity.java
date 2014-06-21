@@ -41,22 +41,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
-//roy give me money
 public class MainActivity extends Activity implements OnItemClickListener {
-
+	
+	public AccountManager mgr = new AccountManager();
 	private Context context = this;
 	private boolean login = false;
 	static WelcomeFragment welcomeFrg = new WelcomeFragment(); 
 	static  MyroomFragment myroomFrg = new MyroomFragment();
 	private MessageFragment messageFrg = new MessageFragment();
 	private ViewFlipper flipper = null;
-	public String ID1 = "123456";
-	public String PW1 = "1234";
 	
 	public static String messStr = "";
 	public static boolean bNewMess = false;
 	public static List<String> top250 = new ArrayList<String>();
-	private static boolean bUserLogin = false;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +65,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE,
 				R.layout.titlebar);
 		
-		
+		welcomeFrg.SetAccountMgr(mgr);
 		flipper = (ViewFlipper) findViewById(R.id.flipper1);
 		flipper.startFlipping();
 		
@@ -205,18 +202,27 @@ public class MainActivity extends Activity implements OnItemClickListener {
 				//String strURL1 = "http://tw.yahoo.com";
 				//Intent ie = new Intent(Intent.ACTION_VIEW,Uri.parse(strURL1));
 				//startActivity(ie);
-				EditText etMS = (EditText) dialog.findViewById(R.id.et_popMS);
-				EditText etPW = (EditText) dialog.findViewById(R.id.et_popPW);
-				if ((etMS.getText().toString().equals(ID1) && etPW.getText().toString().equals(PW1)))
+				String id = ((EditText) dialog.findViewById(R.id.et_popMS)).getText().toString();
+				String pw = ((EditText) dialog.findViewById(R.id.et_popPW)).getText().toString();
+				Account found = mgr.FindAccount(id, pw);
+				if (found != null)
 				{
-					bUserLogin = true;
+					mgr.SetCurrent(found);
 					_btn.setText("Sign Out");  
 
 					dialog.dismiss();
 				}
 				else
 				{
+					new AlertDialog.Builder(MainActivity.this)
+			        .setTitle("Oops, sign-in error").setMessage("Wrong password?")
+			        .setPositiveButton("OK",
+			         new DialogInterface.OnClickListener() {
+			         public void onClick(DialogInterface dialog, int which) {
+			          }
+			          }).show();
 					dialog.dismiss();
+					return;
 				}
 				
 				FragmentTransaction ft = getFragmentManager().beginTransaction();
@@ -737,15 +743,20 @@ public class MainActivity extends Activity implements OnItemClickListener {
 		private ListView listV;
 	    //List<List_Initem> movie_list = new ArrayList<List_Initem>();
 	    
-	    
+	    private AccountManager mgr = null;
 		//private ListView listView;
 		final List<List_Initem> wellcome_list = new ArrayList<List_Initem>();
 		private MyAdapter adapter;
 		
 		private Button signinBtn;
-		public WelcomeFragment() {
-		}
 		
+		public WelcomeFragment() {
+			
+		}
+		public void SetAccountMgr(AccountManager mgr_)
+		{
+			mgr = mgr_;
+		}
 		@Override  
 	    public void onCreate(Bundle savedInstanceState) {  
 	        super.onCreate(savedInstanceState);  
@@ -766,7 +777,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 			
 			for (int i = 0; i < welcome.length; i++)
 			{
-				if (bUserLogin == true)
+				if (mgr.GetCurrentStatus() == AccountStatus.LOGIN)
 				{
 					if (bNewMess ==  true && i == 5)
 					{
@@ -795,7 +806,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 			//listView.setAdapter(adapter);
 			
 			signinBtn = (Button) rootView.findViewById(R.id.welcomeBtn);
-			if (bUserLogin == true)
+			if (mgr.GetCurrentStatus() == AccountStatus.LOGIN)
 			{
 				//bUserLogin = false;
 				signinBtn.setText("Sign Out");
@@ -806,9 +817,9 @@ public class MainActivity extends Activity implements OnItemClickListener {
 			{
 				  public void onClick(View arg0)
 				  {
-					  if (bUserLogin == true)
+					  if (mgr.GetCurrentStatus() == AccountStatus.LOGIN)
 					  {
-						  bUserLogin = false;
+						  mgr.LogoffCurrent();
 						  signinBtn.setText("Sign In");
 						  FragmentTransaction ft = getFragmentManager().beginTransaction();
 						  ft.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right);
@@ -832,7 +843,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 			    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 					
 			    	//if ((int)id == 2 || (int)id == 3)
-			    		if (bUserLogin == false)
+			    		if(mgr.GetCurrentStatus() == AccountStatus.LOGOFF)
 			    			return;
 			    	
 			    	switch ((int)id)

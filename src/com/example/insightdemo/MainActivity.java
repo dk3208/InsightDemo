@@ -761,7 +761,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 													final Dialog JoinDlg4 = new Dialog(mycontext);
 													JoinDlg4.setContentView(R.layout.successed);
 													EditText lv = (EditText) JoinDlg3.findViewById(R.id.editText1);
-													messStr = "Operator will assist you asap... : "+lv.getText().toString();
+													messStr = "We will assist your following request as soon as possible. --- "+lv.getText().toString();
 													
 													if (messStr != "")
 														bNewMess = true;

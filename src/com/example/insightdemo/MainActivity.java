@@ -240,55 +240,79 @@ public class MainActivity extends Activity implements OnItemClickListener {
 		JoinButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// custom dialog
-				final Dialog MessDlg = new Dialog(context);
-				MessDlg.requestWindowFeature(Window.FEATURE_NO_TITLE);
-				MessDlg.setContentView(R.layout.register2);
 				
-				Button ConfirmButton = (Button) MessDlg.findViewById(R.id.nConfirm);
-				TextView tvID = (TextView)MessDlg.findViewById(R.id.reg_memnum_show);
-				String id = mgr.CreateMembershipID();
-				tvID.setText(id);
 				
-				MessDlg.show();
-				
-				ConfirmButton.setOnClickListener(new OnClickListener() {
+				final Dialog JoinDlg = new Dialog(context);
+				JoinDlg.setContentView(R.layout.register1);
+				JoinDlg.setTitle("Join Page...");
+				Button regCloseButton = (Button) JoinDlg.findViewById(R.id.btn_regclose);
+				regCloseButton.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						JoinDlg.dismiss();
+					}
+				});
+
+				JoinDlg.show();
+				Button regreJoinButton = (Button) JoinDlg.findViewById(R.id.btn_regjoin);
+				regreJoinButton.setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View v) {
 						
-						String pw = ((EditText)MessDlg.findViewById(R.id.nPassword)).getText().toString();
-						String con_pw = ((EditText)MessDlg.findViewById(R.id.nConfiPass)).getText().toString();
+						// custom dialog
+						final Dialog MessDlg = new Dialog(context);
+						MessDlg.requestWindowFeature(Window.FEATURE_NO_TITLE);
+						MessDlg.setContentView(R.layout.register2);
+						MessDlg.setCancelable(false);
+						Button ConfirmButton = (Button) MessDlg.findViewById(R.id.nConfirm);
+						TextView tvID = (TextView)MessDlg.findViewById(R.id.reg_memnum_show);
+						String id = mgr.CreateMembershipID();
+						tvID.setText(id);
 						
-						if(pw.isEmpty() || !pw.equals(con_pw))
-						{
-							new AlertDialog.Builder(MainActivity.this)
-					        .setTitle("Error").setMessage("Please check your input")
-					        .setPositiveButton("OK",
-					         new DialogInterface.OnClickListener() {
-					         public void onClick(DialogInterface dialog, int which) {
-					          }
-					          }).show();
-							return;
-						}
-						
-						String newMemberID = ((TextView)MessDlg.findViewById(R.id.reg_memnum_show)).getText().toString();
-						
-						Account a = new Account(newMemberID, pw, AccountStatus.LOGIN, AccountType.NONBOOKING);			
-						mgr.AddAccount(a);
-						mgr.SetCurrent(a);
-						
-						MessDlg.dismiss();
+						JoinDlg.dismiss();
 						dialog.dismiss();
 						
-						FragmentTransaction ft = getFragmentManager().beginTransaction();
-						ft.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right);
+						MessDlg.show();
 						
-						if (welcomeFrg.isVisible()) {
-						
-							ft.remove(welcomeFrg);				
-							flipper.startFlipping();
-						}
-						ft.commit();
+						ConfirmButton.setOnClickListener(new OnClickListener() {
+							@Override
+							public void onClick(View v) {
+								
+								String pw = ((EditText)MessDlg.findViewById(R.id.nPassword)).getText().toString();
+								String con_pw = ((EditText)MessDlg.findViewById(R.id.nConfiPass)).getText().toString();
+								
+								if(pw.isEmpty() || !pw.equals(con_pw))
+								{
+									new AlertDialog.Builder(MainActivity.this)
+							        .setTitle("Error").setMessage("Please check your input")
+							        .setPositiveButton("OK",
+							         new DialogInterface.OnClickListener() {
+							         public void onClick(DialogInterface dialog, int which) {
+							          }
+							          }).show();
+									return;
+								}
+								
+								String newMemberID = ((TextView)MessDlg.findViewById(R.id.reg_memnum_show)).getText().toString();
+								
+								Account a = new Account(newMemberID, pw, AccountStatus.LOGIN, AccountType.NONBOOKING);			
+								mgr.AddAccount(a);
+								mgr.SetCurrent(a);
+								
+								MessDlg.dismiss();
+								
+								
+								FragmentTransaction ft = getFragmentManager().beginTransaction();
+								ft.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right);
+								
+								if (welcomeFrg.isVisible()) {
+								
+									ft.remove(welcomeFrg);				
+									flipper.startFlipping();
+								}
+								ft.commit();
+							}
+						});
 					}
 				});
 			}

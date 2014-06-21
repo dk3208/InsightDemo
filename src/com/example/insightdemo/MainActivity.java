@@ -779,13 +779,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 			{
 				if (mgr.GetCurrentStatus() == AccountStatus.LOGIN)
 				{
-					if (bNewMess ==  true && i == 5)
-					{
-						//iv.setVisibility(View.VISIBLE);
-						wellcome_list.add(new List_Initem(1, welcome[i], iv));
-					}
-					else
-						wellcome_list.add(new List_Initem(1, welcome[i], iv));
+					wellcome_list.add(new List_Initem(1, welcome[i], iv));
 				}
 				else
 				{

@@ -298,11 +298,19 @@ public class MainActivity extends Activity implements OnItemClickListener {
 							validated = false;
 							((TextView)JoinDlg.findViewById(R.id.TextView08)).setTextColor(Color.RED);
 						}
+						else
+						{
+							((TextView)JoinDlg.findViewById(R.id.TextView08)).setTextColor(Color.BLACK);
+						}
 						
 						if(!Validator.ValidatePhone(phone))
 						{
 							validated = false;
 							((TextView)JoinDlg.findViewById(R.id.TextView01)).setTextColor(Color.RED);
+						}
+						else
+						{
+							((TextView)JoinDlg.findViewById(R.id.TextView01)).setTextColor(Color.BLACK);
 						}
 						
 						if(!Validator.ValidatePhone(contry_code))
@@ -310,17 +318,29 @@ public class MainActivity extends Activity implements OnItemClickListener {
 							validated = false;
 							((TextView)JoinDlg.findViewById(R.id.textView1)).setTextColor(Color.RED);
 						}
+						else
+						{
+							((TextView)JoinDlg.findViewById(R.id.textView1)).setTextColor(Color.BLACK);
+						}
 						
 						if(f_name.isEmpty() || !Validator.ValidateName(f_name))
 						{
 							validated = false;
 							((TextView)JoinDlg.findViewById(R.id.TextView11)).setTextColor(Color.RED);
 						}
+						else
+						{
+							((TextView)JoinDlg.findViewById(R.id.TextView11)).setTextColor(Color.BLACK);
+						}
 						
 						if(l_name.isEmpty() || !Validator.ValidateName(l_name))
 						{
 							validated = false;
 							((TextView)JoinDlg.findViewById(R.id.TextView09)).setTextColor(Color.RED);
+						}
+						else
+						{
+							((TextView)JoinDlg.findViewById(R.id.TextView09)).setTextColor(Color.BLACK);
 						}
 						if(!validated)
 						{

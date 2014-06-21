@@ -26,8 +26,6 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.view.animation.Animation.AnimationListener;
-import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
@@ -497,41 +495,51 @@ public class MainActivity extends Activity implements OnItemClickListener {
 
 								  public void onClick(View arg0) {
 									  
-									// custom dialog
-									final Dialog JoinDlg3 = new Dialog(mycontext);
-									JoinDlg3.setContentView(R.layout.instant_help3);
-									
-									JoinDlg3.show();
-									
-									Button button1 = (Button)JoinDlg3.findViewById(R.id.button1);
-									button1.setOnClickListener(new OnClickListener() {
-
-										  public void onClick(View arg0) {
-											  
-											  messStr = "This additional request will charge you $$$."+
-													  	"Your request will be completed in XX mins.";
-											  if (messStr != "")
-													bNewMess = true;
-											// custom dialog
-											final Dialog JoinDlg4 = new Dialog(mycontext);
-											JoinDlg4.setContentView(R.layout.successed);
-											
-											JoinDlg4.show();
-											JoinDlg3.dismiss();
-											JoinDlg2.dismiss();
-											JoinDlg.dismiss();
-										  }
-									});
-									
-									Button button2 = (Button)JoinDlg3.findViewById(R.id.button2);
-									button2.setOnClickListener(new OnClickListener() {
-
-										  public void onClick(View arg0) {
-											  JoinDlg2.dismiss();
+									EditText rn = (EditText) JoinDlg2.findViewById(R.id.et_instRN);
+									EditText ms = (EditText) JoinDlg2.findViewById(R.id.et_instMS);
+									if (rn.getText().toString().equals("111") && ms.getText().toString().equals("111"))
+									{
+										// custom dialog
+										final Dialog JoinDlg3 = new Dialog(mycontext);
+										JoinDlg3.setContentView(R.layout.instant_help3);
+										
+										JoinDlg3.show();
+										
+										Button button1 = (Button)JoinDlg3.findViewById(R.id.button1);
+										button1.setOnClickListener(new OnClickListener() {
+	
+											  public void onClick(View arg0) {
+												  
+												  messStr = "This additional request will charge you $$$."+
+														  	"Your request will be completed in XX mins.";
+												  if (messStr != "")
+														bNewMess = true;
+												// custom dialog
+												final Dialog JoinDlg4 = new Dialog(mycontext);
+												JoinDlg4.setContentView(R.layout.successed);
+												
+												JoinDlg4.show();
+												JoinDlg3.dismiss();
+												JoinDlg2.dismiss();
 												JoinDlg.dismiss();
-											  JoinDlg3.dismiss();
-										  }
-									});
+											  }
+										});
+										
+										Button button2 = (Button)JoinDlg3.findViewById(R.id.button2);
+										button2.setOnClickListener(new OnClickListener() {
+	
+											  public void onClick(View arg0) {
+												  JoinDlg2.dismiss();
+													JoinDlg.dismiss();
+												  JoinDlg3.dismiss();
+											  }
+										});
+									  }
+									else
+									{
+										JoinDlg2.dismiss();
+										JoinDlg.dismiss();
+									}
 								  }
 							});
 							
@@ -562,43 +570,52 @@ public class MainActivity extends Activity implements OnItemClickListener {
 							button1.setOnClickListener(new OnClickListener() {
 
 								  public void onClick(View arg0) {
-									  
-									// custom dialog
-									final Dialog JoinDlg3 = new Dialog(mycontext);
-									JoinDlg3.setContentView(R.layout.instant_help3);
-									
-									JoinDlg3.show();
-									
-									Button button1 = (Button)JoinDlg3.findViewById(R.id.button1);
-									button1.setOnClickListener(new OnClickListener() {
-
-										  public void onClick(View arg0) {
-											  
-											  messStr = "This additional request will charge you $$$."+
-													  	"Your request will be completed in XX mins.";
-											  if (messStr != "")
-													bNewMess = true;
-											// custom dialog
-											final Dialog JoinDlg4 = new Dialog(mycontext);
-											JoinDlg4.setContentView(R.layout.successed);
-											
-											JoinDlg4.show();
-											JoinDlg3.dismiss();
-											JoinDlg2.dismiss();
-											JoinDlg.dismiss();
-										  }
-									});
-									
-									Button button2 = (Button)JoinDlg3.findViewById(R.id.button2);
-									button2.setOnClickListener(new OnClickListener() {
-
-										  public void onClick(View arg0) {
-											  
-											JoinDlg2.dismiss();
-											JoinDlg.dismiss();
-											JoinDlg3.dismiss();
-										  }
-									});
+									  EditText rn = (EditText) JoinDlg2.findViewById(R.id.et_instRN);
+									EditText ms = (EditText) JoinDlg2.findViewById(R.id.et_instMS);
+									if (rn.getText().toString().equals("111") && ms.getText().toString().equals("111"))
+									{
+										// custom dialog
+										final Dialog JoinDlg3 = new Dialog(mycontext);
+										JoinDlg3.setContentView(R.layout.instant_help3);
+										
+										JoinDlg3.show();
+										
+										Button button1 = (Button)JoinDlg3.findViewById(R.id.button1);
+										button1.setOnClickListener(new OnClickListener() {
+	
+											  public void onClick(View arg0) {
+												  
+												  messStr = "This additional request will charge you $$$."+
+														  	"Your request will be completed in XX mins.";
+												  if (messStr != "")
+														bNewMess = true;
+												// custom dialog
+												final Dialog JoinDlg4 = new Dialog(mycontext);
+												JoinDlg4.setContentView(R.layout.successed);
+												
+												JoinDlg4.show();
+												JoinDlg3.dismiss();
+												JoinDlg2.dismiss();
+												JoinDlg.dismiss();
+											  }
+										});
+										
+										Button button2 = (Button)JoinDlg3.findViewById(R.id.button2);
+										button2.setOnClickListener(new OnClickListener() {
+	
+											  public void onClick(View arg0) {
+												  
+												JoinDlg2.dismiss();
+												JoinDlg.dismiss();
+												JoinDlg3.dismiss();
+											  }
+										});
+									  }
+									else
+									{
+										JoinDlg2.dismiss();
+										JoinDlg.dismiss();
+									}
 								  }
 							});
 							
@@ -629,43 +646,52 @@ public class MainActivity extends Activity implements OnItemClickListener {
 							button1.setOnClickListener(new OnClickListener() {
 
 								  public void onClick(View arg0) {
-									  
-									// custom dialog
-									final Dialog JoinDlg3 = new Dialog(mycontext);
-									JoinDlg3.setContentView(R.layout.instant_help3);
-									
-									JoinDlg3.show();
-									
-									Button button1 = (Button)JoinDlg3.findViewById(R.id.button1);
-									button1.setOnClickListener(new OnClickListener() {
-
-										  public void onClick(View arg0) {
-											  
-											  messStr = "This additional request will charge you $$$."+
-													  	"Your request will be completed in XX mins.";
-											  if (messStr != "")
-													bNewMess = true;
-											// custom dialog
-											final Dialog JoinDlg4 = new Dialog(mycontext);
-											JoinDlg4.setContentView(R.layout.successed);
-											
-											JoinDlg2.dismiss();
-											JoinDlg.dismiss();
-										JoinDlg3.dismiss();
-											JoinDlg4.show();
-										  }
-									});
-									
-									Button button2 = (Button)JoinDlg3.findViewById(R.id.button2);
-									button2.setOnClickListener(new OnClickListener() {
-
-										  public void onClick(View arg0) {
-											  
+								  EditText rn = (EditText) JoinDlg2.findViewById(R.id.et_instRN);
+									EditText ms = (EditText) JoinDlg2.findViewById(R.id.et_instMS);
+									if (rn.getText().toString().equals("111") && ms.getText().toString().equals("111"))
+									{  
+										// custom dialog
+										final Dialog JoinDlg3 = new Dialog(mycontext);
+										JoinDlg3.setContentView(R.layout.instant_help3);
+										
+										JoinDlg3.show();
+										
+										Button button1 = (Button)JoinDlg3.findViewById(R.id.button1);
+										button1.setOnClickListener(new OnClickListener() {
+	
+											  public void onClick(View arg0) {
+												  
+												  messStr = "This additional request will charge you $$$."+
+														  	"Your request will be completed in XX mins.";
+												  if (messStr != "")
+														bNewMess = true;
+												// custom dialog
+												final Dialog JoinDlg4 = new Dialog(mycontext);
+												JoinDlg4.setContentView(R.layout.successed);
+												
 												JoinDlg2.dismiss();
 												JoinDlg.dismiss();
 											JoinDlg3.dismiss();
-										  }
-									});
+												JoinDlg4.show();
+											  }
+										});
+										
+										Button button2 = (Button)JoinDlg3.findViewById(R.id.button2);
+										button2.setOnClickListener(new OnClickListener() {
+	
+											  public void onClick(View arg0) {
+												  
+													JoinDlg2.dismiss();
+													JoinDlg.dismiss();
+												JoinDlg3.dismiss();
+											  }
+										});
+									  }
+									else
+									{
+										JoinDlg2.dismiss();
+										JoinDlg.dismiss(); 
+									}
 								  }
 							});
 							
@@ -695,43 +721,52 @@ public class MainActivity extends Activity implements OnItemClickListener {
 							button1.setOnClickListener(new OnClickListener() {
 
 								  public void onClick(View arg0) {
-									  
-									// custom dialog
-									final Dialog JoinDlg3 = new Dialog(mycontext);
-									JoinDlg3.setContentView(R.layout.instent_help4);
-									
-									JoinDlg3.show();
-									
-									Button button1 = (Button)JoinDlg3.findViewById(R.id.button1);
-									button1.setOnClickListener(new OnClickListener() {
-										// input user message
-										  public void onClick(View arg0) {
-											  
-												// custom dialog
-												final Dialog JoinDlg4 = new Dialog(mycontext);
-												JoinDlg4.setContentView(R.layout.successed);
-												EditText lv = (EditText) JoinDlg3.findViewById(R.id.editText1);
-												messStr = "Operator will assist you asap... : "+lv.getText().toString();
-												
-												if (messStr != "")
-													bNewMess = true;
-												
-												JoinDlg2.dismiss();
-												JoinDlg.dismiss();
-												JoinDlg3.dismiss();
-												JoinDlg4.show();
-										  }
-									});
-									
-									Button button2 = (Button)JoinDlg3.findViewById(R.id.button2);
-									button2.setOnClickListener(new OnClickListener() {
-
-										  public void onClick(View arg0) {
-											  	JoinDlg2.dismiss();
-												JoinDlg.dismiss();
-												JoinDlg3.dismiss();
-										  }
-									});
+								  EditText rn = (EditText) JoinDlg2.findViewById(R.id.et_instRN);
+									EditText ms = (EditText) JoinDlg2.findViewById(R.id.et_instMS);
+									if (rn.getText().toString().equals("111") && ms.getText().toString().equals("111"))
+									{    
+										// custom dialog
+										final Dialog JoinDlg3 = new Dialog(mycontext);
+										JoinDlg3.setContentView(R.layout.instent_help4);
+										
+										JoinDlg3.show();
+										
+										Button button1 = (Button)JoinDlg3.findViewById(R.id.button1);
+										button1.setOnClickListener(new OnClickListener() {
+											// input user message
+											  public void onClick(View arg0) {
+												  
+													// custom dialog
+													final Dialog JoinDlg4 = new Dialog(mycontext);
+													JoinDlg4.setContentView(R.layout.successed);
+													EditText lv = (EditText) JoinDlg3.findViewById(R.id.editText1);
+													messStr = "Operator will assist you asap... : "+lv.getText().toString();
+													
+													if (messStr != "")
+														bNewMess = true;
+													
+													JoinDlg2.dismiss();
+													JoinDlg.dismiss();
+													JoinDlg3.dismiss();
+													JoinDlg4.show();
+											  }
+										});
+										
+										Button button2 = (Button)JoinDlg3.findViewById(R.id.button2);
+										button2.setOnClickListener(new OnClickListener() {
+	
+											  public void onClick(View arg0) {
+												  	JoinDlg2.dismiss();
+													JoinDlg.dismiss();
+													JoinDlg3.dismiss();
+											  }
+										});
+									  }
+									else
+									{
+										JoinDlg2.dismiss();
+										JoinDlg.dismiss();
+									}
 								  }
 							});
 							

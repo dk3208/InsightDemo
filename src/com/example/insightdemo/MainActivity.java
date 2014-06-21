@@ -537,6 +537,13 @@ public class MainActivity extends Activity implements OnItemClickListener {
 									  }
 									else
 									{
+										new AlertDialog.Builder(mycontext)
+								        .setTitle("Error").setMessage("Wrong password?")
+								        .setPositiveButton("OK",
+								         new DialogInterface.OnClickListener() {
+								         public void onClick(DialogInterface dialog, int which) {
+								          }
+								          }).show();
 										JoinDlg2.dismiss();
 										JoinDlg.dismiss();
 									}
@@ -613,6 +620,13 @@ public class MainActivity extends Activity implements OnItemClickListener {
 									  }
 									else
 									{
+										new AlertDialog.Builder(mycontext)
+								        .setTitle("Error").setMessage("Wrong password?")
+								        .setPositiveButton("OK",
+								         new DialogInterface.OnClickListener() {
+								         public void onClick(DialogInterface dialog, int which) {
+								          }
+								          }).show();
 										JoinDlg2.dismiss();
 										JoinDlg.dismiss();
 									}
@@ -689,6 +703,13 @@ public class MainActivity extends Activity implements OnItemClickListener {
 									  }
 									else
 									{
+										new AlertDialog.Builder(mycontext)
+								        .setTitle("Error").setMessage("Wrong password?")
+								        .setPositiveButton("OK",
+								         new DialogInterface.OnClickListener() {
+								         public void onClick(DialogInterface dialog, int which) {
+								          }
+								          }).show();
 										JoinDlg2.dismiss();
 										JoinDlg.dismiss(); 
 									}
@@ -764,6 +785,13 @@ public class MainActivity extends Activity implements OnItemClickListener {
 									  }
 									else
 									{
+										new AlertDialog.Builder(mycontext)
+								        .setTitle("Error").setMessage("Wrong password?")
+								        .setPositiveButton("OK",
+								         new DialogInterface.OnClickListener() {
+								         public void onClick(DialogInterface dialog, int which) {
+								          }
+								          }).show();
 										JoinDlg2.dismiss();
 										JoinDlg.dismiss();
 									}

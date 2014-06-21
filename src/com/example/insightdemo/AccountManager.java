@@ -56,6 +56,26 @@ public class AccountManager {
 		return current.GetStatus();
 	}
 	
+	public String CreateMembershipID()
+	{
+		while(true)
+		{
+			int number = (int)(Math.random()*(999 - 100 + 1)) + 100;
+			String s = String.valueOf(number);
+			boolean used = false;
+			
+			for(Account a : list)
+			{
+				if(a.MatchID(s))
+				{
+					used = true;
+				}
+			}
+			if(!used)
+				return s;
+		}
+	}
+	
 	public AccountType GetCurrentType()
 	{
 		if(current == null)

@@ -215,7 +215,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 				else
 				{
 					new AlertDialog.Builder(MainActivity.this)
-			        .setTitle("Oops, sign-in error").setMessage("Wrong password?")
+			        .setTitle("Error").setMessage("Wrong password?")
 			        .setPositiveButton("OK",
 			         new DialogInterface.OnClickListener() {
 			         public void onClick(DialogInterface dialog, int which) {
@@ -241,46 +241,53 @@ public class MainActivity extends Activity implements OnItemClickListener {
 			@Override
 			public void onClick(View v) {
 				// custom dialog
-				final Dialog JoinDlg = new Dialog(context);
-				JoinDlg.setContentView(R.layout.register1);
-				JoinDlg.setTitle("Join Page...");
+				final Dialog MessDlg = new Dialog(context);
+				MessDlg.requestWindowFeature(Window.FEATURE_NO_TITLE);
+				MessDlg.setContentView(R.layout.register2);
 				
-				JoinDlg.show();
+				Button ConfirmButton = (Button) MessDlg.findViewById(R.id.nConfirm);
+				TextView tvID = (TextView)MessDlg.findViewById(R.id.reg_memnum_show);
+				String id = mgr.CreateMembershipID();
+				tvID.setText(id);
 				
-				Button regCloseButton = (Button) JoinDlg.findViewById(R.id.btn_regclose);
-				regCloseButton.setOnClickListener(new OnClickListener() {
+				MessDlg.show();
+				
+				ConfirmButton.setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View v) {
-						JoinDlg.dismiss();
-					}
-				});
-				
-				Button regreJoinButton = (Button) JoinDlg.findViewById(R.id.btn_regjoin);
-				regreJoinButton.setOnClickListener(new OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						final Dialog MessDlg = new Dialog(context);
-						MessDlg.requestWindowFeature(Window.FEATURE_NO_TITLE);
-						MessDlg.setContentView(R.layout.register2);
 						
-						MessDlg.show();
+						String pw = ((EditText)MessDlg.findViewById(R.id.nPassword)).getText().toString();
+						String con_pw = ((EditText)MessDlg.findViewById(R.id.nConfiPass)).getText().toString();
 						
-						JoinDlg.dismiss();
+						if(pw.isEmpty() || !pw.equals(con_pw))
+						{
+							new AlertDialog.Builder(MainActivity.this)
+					        .setTitle("Error").setMessage("Please check your input")
+					        .setPositiveButton("OK",
+					         new DialogInterface.OnClickListener() {
+					         public void onClick(DialogInterface dialog, int which) {
+					          }
+					          }).show();
+							return;
+						}
+						
+						
+						String newMemberID = ((TextView)MessDlg.findViewById(R.id.reg_memnum_show)).getText().toString();
+						Account a = new Account(newMemberID, pw, AccountStatus.LOGIN, AccountType.NONBOOKING);			
+						mgr.SetCurrent(a);
+						
+						MessDlg.dismiss();
 						dialog.dismiss();
 						
-						Button ConfirmButton = (Button) MessDlg.findViewById(R.id.nConfirm);
-						ConfirmButton.setOnClickListener(new OnClickListener() {
-							@Override
-							public void onClick(View v) {
-								final Dialog confDlg = new Dialog(context);
-								confDlg.requestWindowFeature(Window.FEATURE_NO_TITLE);
-								confDlg.setContentView(R.layout.successed);
-								
-								confDlg.show();
-								
-								MessDlg.dismiss();
-							}
-						});
+						FragmentTransaction ft = getFragmentManager().beginTransaction();
+						ft.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right);
+						
+						if (welcomeFrg.isVisible()) {
+						
+							ft.remove(welcomeFrg);				
+							flipper.startFlipping();
+						}
+						ft.commit();
 					}
 				});
 			}
@@ -762,7 +769,9 @@ public class MainActivity extends Activity implements OnItemClickListener {
 	        super.onCreate(savedInstanceState);  
 	        
 	        
-	    }  
+	    } 
+		
+		
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
@@ -779,7 +788,11 @@ public class MainActivity extends Activity implements OnItemClickListener {
 			{
 				if (mgr.GetCurrentStatus() == AccountStatus.LOGIN)
 				{
-					wellcome_list.add(new List_Initem(1, welcome[i], iv));
+					if(mgr.GetCurrentType() == AccountType.NONBOOKING && (i == 2 || i == 3))
+						wellcome_list.add(new List_Initem(wecome_type[i], welcome[i], iv));
+					else
+						wellcome_list.add(new List_Initem(1, welcome[i], iv));
+					
 				}
 				else
 				{

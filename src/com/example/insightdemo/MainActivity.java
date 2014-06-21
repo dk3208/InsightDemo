@@ -271,9 +271,10 @@ public class MainActivity extends Activity implements OnItemClickListener {
 							return;
 						}
 						
-						
 						String newMemberID = ((TextView)MessDlg.findViewById(R.id.reg_memnum_show)).getText().toString();
+						
 						Account a = new Account(newMemberID, pw, AccountStatus.LOGIN, AccountType.NONBOOKING);			
+						mgr.AddAccount(a);
 						mgr.SetCurrent(a);
 						
 						MessDlg.dismiss();
@@ -638,8 +639,8 @@ public class MainActivity extends Activity implements OnItemClickListener {
 	public static class UnlockFragment extends Fragment {
 
 		View rootView = null;
-		public String room_number = "123456";
-		public String member_id = "1234";
+		public String room_number = "111";
+		public String member_id = "111";
 		private AlphaAnimation alphaAnimation1 = new AlphaAnimation(0.1f, 1.0f);  
 		public UnlockFragment() {
 		}
@@ -735,6 +736,19 @@ public class MainActivity extends Activity implements OnItemClickListener {
 						  {
 							  VerticalSeekBar verticalSeebar = (VerticalSeekBar)rootView.findViewById(R.id.verticalSeekbar);
 							  verticalSeebar.setEnabled(true);
+							  room.setEnabled(false);
+							  id.setEnabled(false);
+							  arg0.setEnabled(false);
+						  }
+						  else
+						  {
+							  new AlertDialog.Builder(getActivity())
+						        .setTitle("Error").setMessage("Wrong password?")
+						        .setPositiveButton("OK",
+						         new DialogInterface.OnClickListener() {
+						         public void onClick(DialogInterface dialog, int which) {
+						          }
+						          }).show();
 						  }
 					  }
 				});
@@ -849,9 +863,11 @@ public class MainActivity extends Activity implements OnItemClickListener {
 			    @Override
 			    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 					
-			    	//if ((int)id == 2 || (int)id == 3)
-			    		if(mgr.GetCurrentStatus() == AccountStatus.LOGOFF)
-			    			return;
+			    	if (((int)id == 2 || (int)id == 3) && mgr.GetCurrentType() == AccountType.NONBOOKING)
+			    		return;
+			    	
+			    	if(mgr.GetCurrentStatus() == AccountStatus.LOGOFF)
+			    		return;
 			    	
 			    	switch ((int)id)
 					{

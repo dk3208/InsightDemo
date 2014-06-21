@@ -30,6 +30,7 @@ import android.view.animation.Animation.AnimationListener;
 import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
@@ -37,6 +38,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
@@ -245,6 +247,28 @@ public class MainActivity extends Activity implements OnItemClickListener {
 				final Dialog JoinDlg = new Dialog(context);
 				JoinDlg.setContentView(R.layout.register1);
 				JoinDlg.setTitle("Join Page...");
+				
+				//Add list item
+				Spinner spinner = (Spinner) JoinDlg.findViewById(R.id.SpinnerCity);
+				
+				ArrayAdapter<String> listAdapter = new ArrayAdapter<String>(
+						MainActivity.this, 
+						android.R.layout.simple_spinner_dropdown_item,
+					    new String[] { "Taipei", "Taichung", "tainan", "Kaohsiung" });
+				
+				listAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);	                
+				spinner.setAdapter(listAdapter);
+					                
+				Spinner spinner2 = (Spinner) JoinDlg.findViewById(R.id.SpinnerCountry);
+				ArrayAdapter<String> listAdapter2 = new ArrayAdapter<String>(
+						MainActivity.this, 
+						android.R.layout.simple_spinner_dropdown_item,
+					    new String[] { "Taiwan" });
+				
+				listAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);	                
+				spinner2.setAdapter(listAdapter2);
+				
+				
 				Button regCloseButton = (Button) JoinDlg.findViewById(R.id.btn_regclose);
 				regCloseButton.setOnClickListener(new OnClickListener() {
 					@Override
@@ -253,12 +277,62 @@ public class MainActivity extends Activity implements OnItemClickListener {
 					}
 				});
 
+				
+				
+
 				JoinDlg.show();
 				Button regreJoinButton = (Button) JoinDlg.findViewById(R.id.btn_regjoin);
 				regreJoinButton.setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View v) {
+						//validate inputs
+						String email = ((EditText) JoinDlg.findViewById(R.id.EditText08)).getText().toString();
+						String phone = ((EditText) JoinDlg.findViewById(R.id.EditText01)).getText().toString();
+						String contry_code = ((EditText) JoinDlg.findViewById(R.id.editText1)).getText().toString();
+						String f_name = ((EditText) JoinDlg.findViewById(R.id.EditText11)).getText().toString();
+						String l_name = ((EditText) JoinDlg.findViewById(R.id.EditText09)).getText().toString();
 						
+						boolean validated = true;
+						if(email.isEmpty() || !Validator.ValidateEmail(email))
+						{
+							validated = false;
+							((TextView)JoinDlg.findViewById(R.id.TextView08)).setTextColor(Color.RED);
+						}
+						
+						if(!Validator.ValidatePhone(phone))
+						{
+							validated = false;
+							((TextView)JoinDlg.findViewById(R.id.TextView01)).setTextColor(Color.RED);
+						}
+						
+						if(!Validator.ValidatePhone(contry_code))
+						{
+							validated = false;
+							((TextView)JoinDlg.findViewById(R.id.textView1)).setTextColor(Color.RED);
+						}
+						
+						if(f_name.isEmpty() || !Validator.ValidateName(f_name))
+						{
+							validated = false;
+							((TextView)JoinDlg.findViewById(R.id.TextView11)).setTextColor(Color.RED);
+						}
+						
+						if(l_name.isEmpty() || !Validator.ValidateName(l_name))
+						{
+							validated = false;
+							((TextView)JoinDlg.findViewById(R.id.TextView09)).setTextColor(Color.RED);
+						}
+						if(!validated)
+						{
+							new AlertDialog.Builder(MainActivity.this)
+					        .setTitle("Error").setMessage("Please check your input")
+					        .setPositiveButton("OK",
+					         new DialogInterface.OnClickListener() {
+					         public void onClick(DialogInterface dialog, int which) {
+					          }
+					          }).show();
+							return;
+						}
 						// custom dialog
 						final Dialog MessDlg = new Dialog(context);
 						MessDlg.requestWindowFeature(Window.FEATURE_NO_TITLE);

@@ -8,8 +8,13 @@
 package com.example.insightdemo;
 
 public final class R {
+    public static final class anim {
+        public static final int slide_in_left=0x7f040000;
+        public static final int slide_out_right=0x7f040001;
+    }
     public static final class array {
-        public static final int welcome_array=0x7f060000;
+        public static final int welcome_array=0x7f070001;
+        public static final int wellcome_type=0x7f070000;
     }
     public static final class attr {
     }
@@ -21,89 +26,185 @@ public final class R {
          would include 7" and 10" devices in landscape (~960dp and ~1280dp respectively).
     
          */
-        public static final int activity_horizontal_margin=0x7f040000;
-        public static final int activity_vertical_margin=0x7f040001;
+        public static final int activity_horizontal_margin=0x7f050000;
+        public static final int activity_vertical_margin=0x7f050001;
     }
     public static final class drawable {
-        public static final int banner1=0x7f020000;
-        public static final int banner2=0x7f020001;
-        public static final int banner3=0x7f020002;
-        public static final int banner4=0x7f020003;
-        public static final int ic_launcher=0x7f020004;
-        public static final int textview_border=0x7f020005;
-        public static final int textview_rotate=0x7f020006;
+        public static final int access_denied=0x7f020000;
+        public static final int arrow_down=0x7f020001;
+        public static final int arrowleft=0x7f020002;
+        public static final int banner1=0x7f020003;
+        public static final int banner2=0x7f020004;
+        public static final int banner3=0x7f020005;
+        public static final int banner4=0x7f020006;
+        public static final int contact_us=0x7f020007;
+        public static final int droidmenu=0x7f020008;
+        public static final int droidmore=0x7f020009;
+        public static final int hotel_banner1=0x7f02000a;
+        public static final int hotel_banner2=0x7f02000b;
+        public static final int hotel_banner4=0x7f02000c;
+        public static final int hotel_banner5=0x7f02000d;
+        public static final int hotel_banner6=0x7f02000e;
+        public static final int hotel_banner7=0x7f02000f;
+        public static final int ic_launcher=0x7f020010;
+        public static final int login=0x7f020011;
+        public static final int nfc=0x7f020012;
+        public static final int seekbar_thumb=0x7f020013;
+        public static final int textview_border=0x7f020014;
+        public static final int textview_rotate=0x7f020015;
+        public static final int welcome_home=0x7f020016;
     }
     public static final class id {
-        public static final int btn_popClose=0x7f09000e;
-        public static final int btn_popJoinUs=0x7f09000c;
-        public static final int btn_popSignin=0x7f09000d;
-        public static final int button1=0x7f090014;
-        public static final int container=0x7f090000;
-        public static final int customListItem1=0x7f090006;
-        public static final int editText1=0x7f090013;
-        public static final int editText2=0x7f090011;
-        public static final int et_popMS=0x7f090008;
-        public static final int et_popPW=0x7f090009;
-        public static final int imageView1=0x7f090001;
-        public static final int imageView2=0x7f090002;
-        public static final int imageView3=0x7f090003;
-        public static final int imageView4=0x7f090004;
-        public static final int layout_title=0x7f090019;
-        public static final int textHomeLink=0x7f09001a;
-        public static final int textView1=0x7f090007;
-        public static final int textView2=0x7f09000f;
-        public static final int textView3=0x7f090010;
-        public static final int textView4=0x7f090012;
-        public static final int textView5=0x7f090017;
-        public static final int textView6=0x7f090018;
-        public static final int tv_lock=0x7f090016;
-        public static final int tv_open=0x7f090015;
-        public static final int tv_popPmt1=0x7f09000a;
-        public static final int tv_popPmt2=0x7f09000b;
-        public static final int viewanimator=0x7f090005;
-        public static final int welcomeBtn=0x7f09001e;
-        public static final int welcomeImageView=0x7f09001f;
-        public static final int welcomeList=0x7f090020;
-        public static final int welcomeRelativeLayout=0x7f09001b;
-        public static final int welcomeTextView1=0x7f09001d;
-        public static final int welcomeTitleView=0x7f09001c;
+        public static final int EditText01=0x7f0a0040;
+        public static final int EditText03=0x7f0a003c;
+        public static final int EditText04=0x7f0a003a;
+        public static final int EditText08=0x7f0a0036;
+        public static final int EditText09=0x7f0a0032;
+        public static final int EditText10=0x7f0a0034;
+        public static final int EditText11=0x7f0a0030;
+        public static final int EditText12=0x7f0a002e;
+        public static final int Label=0x7f0a0041;
+        public static final int SecondaryProgress=0x01010000;
+        public static final int SpinnerCity=0x7f0a0038;
+        public static final int SpinnerCountry=0x7f0a003e;
+        public static final int TextView01=0x7f0a003f;
+        public static final int TextView02=0x7f0a003d;
+        public static final int TextView03=0x7f0a003b;
+        public static final int TextView04=0x7f0a0039;
+        public static final int TextView05=0x7f0a0037;
+        public static final int TextView08=0x7f0a0035;
+        public static final int TextView09=0x7f0a0031;
+        public static final int TextView10=0x7f0a0033;
+        public static final int TextView11=0x7f0a002f;
+        public static final int TextView12=0x7f0a002d;
+        public static final int btn1=0x7f0a001e;
+        public static final int btn2=0x7f0a001f;
+        public static final int btn3=0x7f0a0020;
+        public static final int btn4=0x7f0a001b;
+        public static final int btn5=0x7f0a001c;
+        public static final int btn6=0x7f0a001d;
+        public static final int btnOk=0x7f0a0024;
+        public static final int btn_popClose=0x7f0a0017;
+        public static final int btn_popJoinUs=0x7f0a0015;
+        public static final int btn_popSignin=0x7f0a0016;
+        public static final int btn_regclose=0x7f0a002b;
+        public static final int btn_regjoin=0x7f0a002a;
+        public static final int button1=0x7f0a0005;
+        public static final int button2=0x7f0a0006;
+        public static final int button3=0x7f0a0007;
+        public static final int button4=0x7f0a0008;
+        public static final int container=0x7f0a0001;
+        public static final int customListItem1=0x7f0a0003;
+        public static final int editText1=0x7f0a000c;
+        public static final int editText2=0x7f0a0022;
+        public static final int et_instMS=0x7f0a000a;
+        public static final int et_instRN=0x7f0a0009;
+        public static final int et_popMS=0x7f0a0011;
+        public static final int et_popPW=0x7f0a0012;
+        public static final int expandableListView1=0x7f0a0018;
+        public static final int flipper1=0x7f0a0002;
+        public static final int imageView1=0x7f0a0000;
+        public static final int imageofnfc=0x7f0a0029;
+        public static final int item_image=0x7f0a000f;
+        public static final int item_name=0x7f0a000e;
+        public static final int layout_title=0x7f0a0048;
+        public static final int lblListHeader=0x7f0a000d;
+        public static final int lblListItem=0x7f0a0010;
+        public static final int linearLayout1=0x7f0a0019;
+        public static final int linearLayout2=0x7f0a001a;
+        public static final int messageview=0x7f0a004e;
+        public static final int nConfiPass=0x7f0a0046;
+        public static final int nConfirm=0x7f0a0047;
+        public static final int nPassword=0x7f0a0045;
+        public static final int reg_memnum_show=0x7f0a0044;
+        public static final int reg_mes1=0x7f0a0042;
+        public static final int reg_mes2=0x7f0a0043;
+        public static final int scrollView1=0x7f0a002c;
+        public static final int textHomeLink=0x7f0a0049;
+        public static final int textView1=0x7f0a0004;
+        public static final int textView2=0x7f0a000b;
+        public static final int textView3=0x7f0a0021;
+        public static final int textView4=0x7f0a0023;
+        public static final int textView5=0x7f0a0025;
+        public static final int tv_lock=0x7f0a0026;
+        public static final int tv_open=0x7f0a0027;
+        public static final int tv_popPmt1=0x7f0a0013;
+        public static final int tv_popPmt2=0x7f0a0014;
+        public static final int verticalSeekbar=0x7f0a0028;
+        public static final int welcomeBtn=0x7f0a004d;
+        public static final int welcomeList=0x7f0a004f;
+        public static final int welcomeRelativeLayout=0x7f0a004a;
+        public static final int welcomeTextView1=0x7f0a004c;
+        public static final int welcomeTitleView=0x7f0a004b;
     }
     public static final class layout {
-        public static final int activity_main=0x7f030000;
-        public static final int custom_list_items=0x7f030001;
-        public static final int fragment_main=0x7f030002;
-        public static final int join_pop=0x7f030003;
-        public static final int login_pop=0x7f030004;
-        public static final int myroom_page=0x7f030005;
-        public static final int titlebar=0x7f030006;
-        public static final int welcome=0x7f030007;
+        public static final int access_denied=0x7f030000;
+        public static final int activity_main=0x7f030001;
+        public static final int custom_list_items=0x7f030002;
+        public static final int fragment_main=0x7f030003;
+        public static final int instant_help1=0x7f030004;
+        public static final int instant_help2=0x7f030005;
+        public static final int instant_help3=0x7f030006;
+        public static final int instent_help4=0x7f030007;
+        public static final int list_group=0x7f030008;
+        public static final int list_item=0x7f030009;
+        public static final int list_item2=0x7f03000a;
+        public static final int login_pop=0x7f03000b;
+        public static final int message=0x7f03000c;
+        public static final int myroom_page_1=0x7f03000d;
+        public static final int myroom_page_2=0x7f03000e;
+        public static final int register1=0x7f03000f;
+        public static final int register2=0x7f030010;
+        public static final int successed=0x7f030011;
+        public static final int titlebar=0x7f030012;
+        public static final int welcome=0x7f030013;
+        public static final int welcome_home=0x7f030014;
     }
     public static final class menu {
-        public static final int main=0x7f080000;
+        public static final int main=0x7f090000;
     }
     public static final class string {
-        public static final int action_settings=0x7f050001;
-        public static final int app_name=0x7f050000;
-        public static final int btn_lock=0x7f05000e;
-        public static final int btn_ok=0x7f05000d;
-        public static final int btn_open=0x7f05000f;
-        public static final int closepop=0x7f050008;
-        public static final int link_help=0x7f050010;
-        public static final int link_unlock=0x7f050011;
+        public static final int Confirm=0x7f060019;
+        public static final int MP_OK=0x7f060002;
+        public static final int MP_cancel=0x7f060003;
+        public static final int MP_confirm=0x7f060001;
+        /**  MainActivity page 
+         */
+        public static final int MP_prompt=0x7f060000;
+        public static final int action_settings=0x7f060005;
+        public static final int app_name=0x7f060004;
+        public static final int btn_lock=0x7f060013;
+        public static final int btn_ok=0x7f060012;
+        public static final int btn_open=0x7f060014;
+        public static final int closepop=0x7f06000d;
+        public static final int link_help=0x7f060015;
+        public static final int link_unlock=0x7f060016;
         /**  login popup window string 
          */
-        public static final int ms_st=0x7f050002;
+        public static final int ms_st=0x7f060006;
         /**  my room page string 
          */
-        public static final int myroom=0x7f050009;
-        public static final int myroom_des=0x7f05000a;
-        public static final int myroom_mspw=0x7f05000c;
-        public static final int myroom_num=0x7f05000b;
-        public static final int prompt1=0x7f050005;
-        public static final int prompt2=0x7f050006;
-        public static final int prompt3=0x7f050007;
-        public static final int pw_st=0x7f050003;
-        public static final int sign_in=0x7f050004;
+        public static final int myroom=0x7f06000e;
+        public static final int myroom_des=0x7f06000f;
+        public static final int myroom_mspw=0x7f060011;
+        public static final int myroom_num=0x7f060010;
+        public static final int prompt1=0x7f06000a;
+        public static final int prompt2=0x7f06000b;
+        public static final int prompt3=0x7f06000c;
+        public static final int pw_st=0x7f060007;
+        public static final int reg_hint1=0x7f06001c;
+        public static final int reg_hint2=0x7f06001d;
+        /**  register2 page string 
+         */
+        public static final int reg_message0=0x7f060018;
+        public static final int reg_message1=0x7f06001a;
+        public static final int reg_message2=0x7f06001b;
+        /**  register1 page string 
+         */
+        public static final int reg_title=0x7f060017;
+        public static final int rn_st=0x7f060008;
+        public static final int sign_in=0x7f060009;
+        public static final int unlock=0x7f06001e;
     }
     public static final class style {
         /** 
@@ -123,13 +224,13 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f070003;
+        public static final int AppBaseTheme=0x7f080003;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f070004;
-        public static final int appTheme=0x7f070000;
-        public static final int titleBarBackground=0x7f070002;
-        public static final int titleBarHeading=0x7f070001;
+        public static final int AppTheme=0x7f080004;
+        public static final int appTheme=0x7f080000;
+        public static final int titleBarBackground=0x7f080002;
+        public static final int titleBarHeading=0x7f080001;
     }
 }
